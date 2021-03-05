@@ -6,11 +6,34 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'a91ae036edbe0a258945266d3ebfadd448b09a15',
+    'reference' => 'b68ecac912f988408d597f778da1edfaad581ee2',
     'name' => 'tw/heygov-wp-dashboard',
   ),
   'versions' => 
   array (
+    'composer/installers' => 
+    array (
+      'pretty_version' => 'v1.10.0',
+      'version' => '1.10.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d',
+    ),
+    'roundcube/plugin-installer' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '*',
+      ),
+    ),
+    'shama/baton' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '*',
+      ),
+    ),
     'tw/heygov-wp-dashboard' => 
     array (
       'pretty_version' => 'dev-master',
@@ -18,7 +41,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'a91ae036edbe0a258945266d3ebfadd448b09a15',
+      'reference' => 'b68ecac912f988408d597f778da1edfaad581ee2',
     ),
     'yahnis-elsts/plugin-update-checker' => 
     array (

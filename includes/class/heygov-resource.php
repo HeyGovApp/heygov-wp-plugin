@@ -15,6 +15,6 @@ class HeyGovResource {
 
 		<script src="https://files.heygov.com/widget.js" data-heygov-jurisdiction="<?php echo $heygov_id; ?>" data-heygov-button-style="<?php echo $heygov_btn_position; ?>" data-heygov-button-text="<?php echo $heygov_btn_text; ?>"></script>
 
-		<? endif;
+		<?php endif;
 	}
 }

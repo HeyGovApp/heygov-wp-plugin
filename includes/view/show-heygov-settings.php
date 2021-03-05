@@ -1,6 +1,5 @@
 <?php
 
-	var_dump($_POST['heygov']['position']);
 	if(isset($_POST['heygov'])){
 		$heygov_id      	= $_POST['heygov']['id'];
 		$heygov_btn_text	= $_POST['heygov']['text'];
