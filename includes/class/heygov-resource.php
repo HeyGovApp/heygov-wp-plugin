@@ -9,7 +9,7 @@ class HeyGovResource {
 	function load_frontend_includes() { 
 		$heygov_id          = get_option('heygov_id') ? : get_option( 'siteurl');
 		$heygov_btn_text    = get_option('heygov_btn_text') ? : 'Report an Issue';
-		$heygov_btn_position     = get_option('heygov_btn_position') ? :'bottom-right';
+		$heygov_btn_position     = get_option('heygov_btn_position') ? :'middle-right';
 		if($heygov_btn_position != 'none'):
 		?>
 

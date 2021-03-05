@@ -9,6 +9,8 @@ Author URI: https://townweb.com
 License: GPL2
 */
 
+include 'vendor/autoload.php';
+
 define('HEYGOV_URL', plugin_dir_url( __FILE__ ));
 define('HEYGOV_DIR', plugin_dir_path( __FILE__ ));
 
