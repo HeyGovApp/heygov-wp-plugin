@@ -1,67 +1,55 @@
 <?php
 
-	if(isset($_POST['heygov'])){
-		$heygov_id      	= $_POST['heygov']['id'];
-		$heygov_btn_text	= $_POST['heygov']['text'];
-		$heygov_btn_position = $_POST['heygov']['position'];
-		update_option('heygov_id', $heygov_id);
-		update_option('heygov_btn_text', $heygov_btn_text);
-		update_option('heygov_btn_position', $heygov_btn_position);
-	}else{
-		$heygov_id          = get_option('heygov_id') ? : get_option( 'siteurl');
-		$heygov_btn_text    = get_option('heygov_btn_text') ? : 'Report an Issue';
-		$heygov_btn_position     = get_option('heygov_btn_position') ? :'bottom-right';
+// HeyGov ID
+$heygov_id = get_option('heygov_id');
+
+// widget info
+$heygov_btn_text = get_option('heygov_btn_text') ?: 'Report an Issue';
+$heygov_btn_position = get_option('heygov_btn_position') ?: 'middle-right';
+
+// apps banner info
+$heygov_banner = get_option('heygov_banner') ?: 0;
+$heygov_banner_bg_color = get_option('heygov_banner_bg_color') ?: '#EEF4FE';
+$heygov_banner_img_big = get_option('heygov_banner_img_big') ?: HEYGOV_URL . 'assets/img-banner-example.png';
+$heygov_banner_img_small = get_option('heygov_banner_img_small') ?: HEYGOV_URL . 'assets/img-banner-mobile-example.png';
+
+
+// validate & save HeyGov ID
+if (isset($_POST['heygov'])) {
+	$id = heygov_validate_id($_POST['heygov']['id']);
+
+	if (is_wp_error($id)) {
+		echo '<div class="notice notice-error"><p>' . $id->get_error_message() . '</p></div>';
+	} else {
+		$heygov_id = $id;
+		update_option('heygov_id', $id);
+
+		echo '<div class="notice notice-success"><p>HeyGov ID is saved.</p></div>';
 	}
 ?>
 
 <div class="wrap">
 
-	<h1 class="wp-heading-inline">HeyGov Settings</h1>
+	<h1 class="wp-heading-inline">HeyGov</h1>
 	<hr class="wp-header-end">
 
 	<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
 
 		<table class="form-table">
-			<tbody>
-				<tr>
-					<th scope="row">HeyGov Shortcode</th>
-					<td>
-						<div class="twd-subscribe-shortcode larger">[heygov-widget]</div>
-					</td>
-				</tr>
-
-				<tr>
-					<th><label for="heygov_id">HeyGov ID</label></th>
-					<td>
-						<input type="text" name="heygov[id]" class="regular-text" id="heygov_id" value="<?php echo $heygov_id?:''; ?>" />
-						<p class="description">Example: `town.com`</p>
-					</td>
-				</tr>
-
-				<tr>
-					<th><label for="heygov_btn_position">Button Position</label></th>
-					<td>
-						<select class="regular-text" name="heygov[position]" id="heygov_btn_position">
-							<option value="none" <?php selected($heygov_btn_position, 'none'); ?>>None</option>
-							<option value="bottom-right" <?php selected($heygov_btn_position, 'bottom-right'); ?>>Bottom right</option>
-							<option value="middle-right" <?php selected($heygov_btn_position, 'middle-right'); ?>>Middle right</option>
-							<option value="random" <?php selected($heygov_btn_position, 'random'); ?>>Random</option>
-						</select>
-						<p class="description">Example: `middle-right`, `bottom-right`, `none`</p>
-					</td>
-				</tr>
-
-				<tr>
-					<th><label for="heygov_btn_text">Button Text</label></th>
-					<td>
-						<input type="text" name="heygov[text]" class="regular-text" id="heygov_btn_text" value="<?php echo $heygov_btn_text; ?>" />
-						<p class="description">Example: `Report City Issue` or `Report Town Issue`</p>
-					</td>
-				</tr>
-
-			</tbody>
+			<tr>
+				<th><label for="heygov_id">HeyGov ID</label></th>
+				<td>
+					<input type="text" name="heygov[id]" class="regular-text" id="heygov_id" value="<?php echo $heygov_id?:''; ?>" />
+					<p class="description">Usually the website domain, ex: <code>town.com</code></p>
+				</td>
+			</tr>
+			<tr>
+				<th class="heygov-py-0"></th>
+				<td class="heygov-py-0">
+					<p class="submit"><input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update HeyGov ID"></p>
+				</td>
+			</tr>
 		</table>
 
-        <p class="submit"><input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Save Changes"></p>
-    </form>
-</div>
+
+	<?php if ($heygov_id) : ?>

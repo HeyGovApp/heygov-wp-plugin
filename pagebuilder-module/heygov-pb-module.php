@@ -2,8 +2,7 @@
 
 class HeyGovModule extends FLBuilderModule {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct(array(
             'name'            => __( 'Heygov Widget', 'fl-builder' ),
             'description'     => __( 'Display heygov widget', 'fl-builder' ),

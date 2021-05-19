@@ -1,6 +1,6 @@
 <?php
 
-class HeyGovSettings{
+class HeyGovSettings {
 
 	function add_admin_menu() {
         add_menu_page(
@@ -8,7 +8,7 @@ class HeyGovSettings{
             'HeyGov',
             'manage_options',
             'heygov_settings',
-            array($this, 'render_setting_page'),
+            [$this, 'render_setting_page'],
             'none',
             30
         );

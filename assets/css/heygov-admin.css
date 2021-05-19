@@ -1,9 +1,10 @@
+
 #adminmenu #toplevel_page_heygov_settings div.wp-menu-image:before {
-    content: "\f101";
-    color: #ef8e02;
-    opacity: 0.8;
+	content: "\f101";
+	color: #ef8e02;
+	opacity: 0.8;
 }
 
 #adminmenu #toplevel_page_heygov_settings a:hover div.wp-menu-image:before {
-    opacity: 1;
 }
+

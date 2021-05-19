@@ -17,6 +17,30 @@ define('HEYGOV_DIR', plugin_dir_path( __FILE__ ));
 require_once 'includes/class/heygov-resource.php';
 require_once 'includes/class/heygov-settings.php';
 
+function heygov_validate_id(string $id) {
+
+	if (empty($id)) {
+		return new \WP_Error('heygov_empty_id', 'HeyGov ID is empty');
+	}
+
+	$re = wp_remote_get('https://api.heygov.com/jurisdictions/' . $id);
+
+	if (is_wp_error($re)) {
+		return $re;
+	}
+
+	$data = wp_remote_retrieve_body($re);
+	$data = json_decode($data);
+
+	if (isset($data->slug)) {
+		$id = $data->slug;
+	} else {
+		return new \WP_Error('heygov_invalid_id', 'HeyGov ID is invalid');
+	}
+
+	return $id;
+}
+
 class HeyGov {
 
 	function __construct() {
