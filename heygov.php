@@ -67,6 +67,14 @@ class HeyGov {
 		], $links);
 	}
 
+	public function enablePlugin() {
+		$id = heygov_validate_id($_SERVER['HTTP_HOST']);
+
+		if (!is_wp_error($id)) {
+			update_option('heygov_id', $id);
+		}
+	}
+
 }
 
 function heygov_load_module() {
@@ -76,4 +84,6 @@ function heygov_load_module() {
 }
 
 // Start the plugin
-new HeyGov;
+$heygov = new HeyGov;
+
+register_activation_hook(__FILE__, [$heygov, 'enablePlugin']);
