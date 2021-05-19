@@ -1,0 +1,88 @@
+
+.heygov-apps-banner-wrapper {
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+}
+
+.heygov-apps-banner {
+	display: flex;
+	flex-wrap: wrap;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	align-items: center;
+}
+
+.heygov-apps-banner-image {
+	flex-grow: 1;
+	flex-basis: 0;
+	padding: 0 !important;
+	border-radius: 10px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 15px;
+}
+
+.heygov-apps-banner-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+	margin: 0 !important;
+}
+
+.heygov-apps-banner-image-big {
+	display: none;
+	height: 90px;
+}
+
+.heygov-apps-banner-links {
+	width: 100%;
+	border-radius: 10px;
+	margin-left: 15px;
+	margin-right: 15px;
+	text-align: center;
+}
+
+.heygov-apps-banner-links .heygov-link-ios,
+.heygov-apps-banner-links .heygov-link-android {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+
+}
+
+.heygov-apps-banner-links .heygov-link-ios {
+	margin-bottom: 5px;
+}
+
+.heygov-apps-banner-links img {
+	height: 40px;
+	width: auto;
+}
+
+@media (min-width: 600px) {
+	.heygov-apps-banner-image {
+		margin-bottom: 0;
+	}
+
+	.heygov-apps-banner-links {
+		flex: 0 0 150px;
+		max-width: 150px;
+	}
+
+	.heygov-apps-banner-image-small {
+		display: none;
+	}
+
+	.heygov-apps-banner-image-big {
+		display: inline;
+	}
+
+	.heygov-apps-banner-links img {
+		height: auto;
+		width: 125px;
+	}
+}
