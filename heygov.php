@@ -57,9 +57,15 @@ class HeyGov {
 			add_shortcode('heygov-widget', array($setting, 'heygov_shortcode'));
 		}
 
+		add_filter('plugin_action_links_heygov/heygov.php', [$this, 'actionLinks']);
 		add_action( 'init', 'heygov_load_module' );
 	}
 
+	public function actionLinks(array $links) {
+		return array_merge([
+			'settings'	=>	'<a href="' . menu_page_url('heygov_settings', false) . '">' . __('Settings', 'heygov') . '</a>'
+		], $links);
+	}
 
 }
 
