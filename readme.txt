@@ -24,6 +24,9 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 1.1.1 =
+* Updated - Banner images
+
 = 1.1 =
 * Added - Apps banner
 
