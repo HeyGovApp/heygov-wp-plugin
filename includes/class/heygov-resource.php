@@ -19,13 +19,14 @@ class HeyGovResource {
 
 	public function load_widget() { 
 		$heygov_id          = get_option('heygov_id');
-		$heygov_btn_text    = get_option('heygov_btn_text') ?: 'Report an Issue';
-		$heygov_btn_position     = get_option('heygov_btn_position') ?: 'middle-right';
 
 		if ($heygov_id) :
+			$heygov_features = get_option('heygov_features') ?: 'issues';
+			$heygov_btn_text = get_option('heygov_btn_text') ?: 'Report an Issue';
+			$heygov_btn_position = get_option('heygov_btn_position') ?: 'middle-right';
 			$buttonStyle = $heygov_btn_position === 'none' ? '' : 'data-heygov-button-style="' . $heygov_btn_position . '"';
 			?>
-			<script src="https://files.heygov.com/widget.js" data-heygov-jurisdiction="<?php echo $heygov_id; ?>" <?php echo $buttonStyle ?> data-heygov-button-text="<?php echo $heygov_btn_text; ?>"></script>
+			<script src="https://files.heygov.com/widget.js" data-heygov-jurisdiction="<?php echo $heygov_id; ?>" data-heygov-features="<?php echo $heygov_features; ?>" <?php echo $buttonStyle ?> data-heygov-button-text="<?php echo $heygov_btn_text; ?>"></script>
 			<?php
 		endif;
 	}

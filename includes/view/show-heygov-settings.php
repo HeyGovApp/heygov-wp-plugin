@@ -2,6 +2,7 @@
 
 // HeyGov ID
 $heygov_id = get_option('heygov_id');
+$heygov_features = explode(',', get_option('heygov_features') ?: 'issues');
 
 // widget info
 $heygov_btn_text = get_option('heygov_btn_text') ?: 'Report an Issue';
@@ -22,9 +23,12 @@ if (isset($_POST['heygov'])) {
 		echo '<div class="notice notice-error"><p>' . $id->get_error_message() . '</p></div>';
 	} else {
 		$heygov_id = $id;
-		update_option('heygov_id', $id);
+		$heygov_features = $_POST['heygov']['features'];
 
-		echo '<div class="notice notice-success"><p>HeyGov ID is saved.</p></div>';
+		update_option('heygov_id', $id);
+		update_option('heygov_features', join(',', $heygov_features));
+
+		echo '<div class="notice notice-success"><p>HeyGov ID and apps have been saved.</p></div>';
 	}
 }
 
@@ -71,9 +75,24 @@ if (isset($_POST['heygov_banner'])) {
 				</td>
 			</tr>
 			<tr>
+				<th><label for="heygov_id">Active apps</label></th>
+				<td>
+					<fieldset>
+						<legend class="screen-reader-text"><span>HeyGov apps to enable </span></legend>
+						<p>
+							<label><input name="heygov[features][]" type="checkbox" value="issues" <?php checked(in_array('issues', $heygov_features)) ?>> HeyGov 311</label><br>
+							<label><input name="heygov[features][]" type="checkbox" value="forms" <?php checked(in_array('forms', $heygov_features)) ?>> HeyLicense</label>
+						</p>
+						<p class="description">
+							Which HeyGov apps should be displayed in the widget.
+						</p>
+					</fieldset>
+				</td>
+			</tr>
+			<tr>
 				<th class="heygov-py-0"></th>
 				<td class="heygov-py-0">
-					<p class="submit"><input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update HeyGov ID"></p>
+					<p class="submit"><input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update HeyGov settings"></p>
 				</td>
 			</tr>
 		</table>
