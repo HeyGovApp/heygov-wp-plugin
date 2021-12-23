@@ -1,6 +1,6 @@
 === HeyGov ===
 Contributors: Trayche Roshkoski, Andrei Igna
-Tags: heygov, townweb, issue reporting, reporting
+Tags: heygov, issue reporting, reporting, forms
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 7.0

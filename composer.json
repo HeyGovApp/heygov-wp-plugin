@@ -1,6 +1,6 @@
 {
-    "name": "tw/heygov-wp-dashboard",
-    "description": "Heygov widget functionality to any website",
+    "name": "heygov/heygov-wp-plugin",
+    "description": "HeyGov widget functionality to any website",
     "type": "wordpress-plugin",
     "authors": [
         {
