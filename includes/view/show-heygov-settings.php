@@ -11,9 +11,8 @@ $heygov_btn_position = get_option('heygov_btn_position') ?: 'middle-right';
 // apps banner info
 $heygov_banner = get_option('heygov_banner') ?: 0;
 $heygov_banner_bg_color = get_option('heygov_banner_bg_color') ?: '#EEF4FE';
-$heygov_banner_img_big = get_option('heygov_banner_img_big') ?: HEYGOV_URL . 'assets/img-banner-example.png';
-$heygov_banner_img_small = get_option('heygov_banner_img_small') ?: HEYGOV_URL . 'assets/img-banner-mobile-example.png';
-
+$heygov_banner_img_big = get_option('heygov_banner_img_big') ?: HEYGOV_URL . 'assets/banner.jpg';
+$heygov_banner_img_small = get_option('heygov_banner_img_small') ?: HEYGOV_URL . 'assets/banner-mobile.jpg';
 
 // validate & save HeyGov ID
 if (isset($_POST['heygov'])) {
@@ -70,8 +69,8 @@ if (isset($_POST['heygov_banner'])) {
 			<tr>
 				<th><label for="heygov_id">HeyGov ID</label></th>
 				<td>
-					<input type="text" name="heygov[id]" class="regular-text" id="heygov_id" value="<?php echo $heygov_id?:''; ?>" />
-					<p class="description">Usually the website domain, ex: <code>town.com</code></p>
+					<input type="text" name="heygov[id]" class="regular-text" id="heygov_id" value="<?php echo esc_attr($heygov_id ?: ''); ?>" />
+					<p class="description">Usually the website domain without <code>www.</code>, ex: <code>town.com</code></p>
 				</td>
 			</tr>
 			<tr>
@@ -84,7 +83,7 @@ if (isset($_POST['heygov_banner'])) {
 							<label><input name="heygov[features][]" type="checkbox" value="forms" <?php checked(in_array('forms', $heygov_features)) ?>> HeyLicense</label>
 						</p>
 						<p class="description">
-							Which HeyGov apps should be displayed in the widget.
+							Which HeyGov apps should be displayed in the widget?
 						</p>
 					</fieldset>
 				</td>
@@ -101,7 +100,7 @@ if (isset($_POST['heygov_banner'])) {
 
 	<?php if ($heygov_id) : ?>
 		<div class="heygov-feature">
-			<h3>Report Issue widget</h3>
+			<h3>HeyGov widget appearance</h3>
 
 			<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
 
@@ -149,10 +148,10 @@ if (isset($_POST['heygov_banner'])) {
 		</div>
 
 		<div class="heygov-feature">
-			<h3>Apps banner</h3>
-		
+			<h3>HeyGov Apps banner</h3>
+
 			<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
-				<p><label><input type="checkbox" name="heygov_banner[heygov_banner]" id="heygov_banner_toggle" <?php checked($heygov_banner) ?> /> Enable footer banner with HeyGov apps download info</label></p>
+				<p><label><input type="checkbox" name="heygov_banner[heygov_banner]" id="heygov_banner_toggle" <?php checked($heygov_banner) ?> /> Display a banner with HeyGov apps download links on the footer of your website</label></p>
 
 				<div class="heygov-apps-banner-options <?php if (!$heygov_banner) echo 'hidden' ?>">
 					<table class="form-table">

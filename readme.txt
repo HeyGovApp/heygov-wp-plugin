@@ -7,26 +7,30 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Manage the HeyGov widget on your WordPress website
+Manage the HeyGov widget on your municipality website
 
 == Description ==
 
-This plugin makes it really easy to add a HeyGov widget to your WordPress website.
-HeyGov widget can be used for:
-- sending 311 requests to local government or municipal departments
-- apply for licenses and permits
-- search or request information about your municipality
+[HeyGov](https://heygov.com) helps digitize citizen services for your municipality.
+
+This plugin streamlines the installation for the HeyGov widget on your WordPress website. The widget can be used to:
+- report issues or requests in your city or town
+- submit applications for permits and licenses
+- search for information, meeting agendas and other documents in your city or town
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-1. Get the latest version of the plugin from BitBucket
-2. Upload the plugin files to the `/wp-content/plugins/heygov` directory
-3. Activate the plugin through the 'Plugins' screen in WordPress
-
+1. Sign up for HeyGov at [heygov.com](https://heygov.com)
+2. Enable the features you want to use
+3. Download the plugin
+4. Upload the plugin to your WordPress website
+5. Activate the plugin on Plugins page
+6. Add your HeyGov ID in WP Admin -> HeyGov settings page
 
 == Changelog ==
+
+= 1.2.1 =
+* Updated - Texts and links
 
 = 1.2.0 =
 * Added - Option to enable/disable HeyGov apps

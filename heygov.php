@@ -2,8 +2,8 @@
 /*
 Plugin Name: HeyGov
 Plugin URI: https://heygov.com
-Description: Add HeyGov functionality: Report Issue widget, Apps banner
 Version: 1.2.0
+Description: Manage the HeyGov widget on your municipality WordPress website
 Author: HeyGov
 Author URI: https://heygov.com
 License: GPL2

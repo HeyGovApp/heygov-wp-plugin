@@ -1,8 +1,9 @@
 <?php
 $heygov_banner_bg_color = get_option('heygov_banner_bg_color') ?: '#EEF4FE';
-$heygov_banner_img_big = get_option('heygov_banner_img_big') ?: HEYGOV_URL . 'assets/img-banner-example.png';
-$heygov_banner_img_small = get_option('heygov_banner_img_small') ?: HEYGOV_URL . 'assets/img-banner-mobile-example.png';
+$heygov_banner_img_big = get_option('heygov_banner_img_big') ?: HEYGOV_URL . 'assets/banner.jpg';
+$heygov_banner_img_small = get_option('heygov_banner_img_small') ?: HEYGOV_URL . 'assets/banner-mobile.jpg';
 ?>
+
 <div class="heygov-apps-banner" style="background-color: <?php echo $heygov_banner_bg_color ?>">
 	<div class="heygov-apps-banner-image">
 		<img src="<?php echo $heygov_banner_img_big ?>" class="heygov-apps-banner-image-big" alt="HeyGov" />
