@@ -16,16 +16,20 @@ $heygov_banner_img_small = get_option('heygov_banner_img_small') ?: HEYGOV_URL .
 
 // validate & save HeyGov ID
 if (isset($_POST['heygov'])) {
-	$id = heygov_validate_id($_POST['heygov']['id']);
+	$id = heygov_validate_id(sanitize_text_field($_POST['heygov']['id']));
 
 	if (is_wp_error($id)) {
 		echo '<div class="notice notice-error"><p>' . $id->get_error_message() . '</p></div>';
 	} else {
 		$heygov_id = $id;
-		$heygov_features = $_POST['heygov']['features'];
-
 		update_option('heygov_id', $id);
-		update_option('heygov_features', join(',', $heygov_features));
+
+		if (isset($_POST['heygov']['features']) && is_array($_POST['heygov']['features'])) {
+			$heygov_features = array_map('sanitize_key', $_POST['heygov']['features']);
+
+			update_option('heygov_features', implode(',', $heygov_features));
+		}
+
 
 		echo '<div class="notice notice-success"><p>HeyGov ID and apps have been saved.</p></div>';
 	}
@@ -44,9 +48,9 @@ if (isset($_POST['heygov_widget'])) {
 // save banner settings
 if (isset($_POST['heygov_banner'])) {
 	$heygov_banner = isset($_POST['heygov_banner']['heygov_banner']) && $_POST['heygov_banner']['heygov_banner'] === 'on' ? 1 : 0;
-	$heygov_banner_bg_color = $_POST['heygov_banner']['bg_color'];
-	$heygov_banner_img_big = $_POST['heygov_banner']['image_big'];
-	$heygov_banner_img_small = $_POST['heygov_banner']['image_small'];
+	$heygov_banner_bg_color = sanitize_text_field($_POST['heygov_banner']['bg_color']);
+	$heygov_banner_img_big = esc_url_raw($_POST['heygov_banner']['image_big']);
+	$heygov_banner_img_small = esc_url_raw($_POST['heygov_banner']['image_small']);
 
 	update_option('heygov_banner', $heygov_banner);
 	update_option('heygov_banner_bg_color', $heygov_banner_bg_color);
@@ -122,7 +126,7 @@ if (isset($_POST['heygov_banner'])) {
 						<tr>
 							<th><label for="heygov_btn_text">Widget button text</label></th>
 							<td>
-								<input type="text" name="heygov_widget[text]" class="regular-text" id="heygov_btn_text" value="<?php echo $heygov_btn_text; ?>" />
+								<input type="text" name="heygov_widget[text]" class="regular-text" id="heygov_btn_text" value="<?php echo esc_attr($heygov_btn_text); ?>" />
 								<p class="description">Example: `Report a City Issue` or `Report a Town Issue`</p>
 							</td>
 						</tr>
@@ -159,23 +163,23 @@ if (isset($_POST['heygov_banner'])) {
 							<tr>
 								<th><label for="heygov_banner_bg">Banner background color</label></th>
 								<td>
-									<input type="color" name="heygov_banner[bg_color]" id="heygov_banner_bg" value="<?php echo $heygov_banner_bg_color ?>" />
+									<input type="color" name="heygov_banner[bg_color]" id="heygov_banner_bg" value="<?php echo esc_attr($heygov_banner_bg_color) ?>" />
 								</td>
 							</tr>
 
 							<tr>
 								<th><label for="heygov_banner_image_big">Banner desktop image</label></th>
 								<td>
-									<input type="file" id="heygov_banner_image_big" />
-									<input type="hidden" name="heygov_banner[image_big]" id="heygov_banner_image_big_inp" value="<?php echo $heygov_banner_img_big ?>" />
+									<input type="file" id="heygov_banner_image_big" accept="image/*" />
+									<input type="hidden" name="heygov_banner[image_big]" id="heygov_banner_image_big_inp" value="<?php echo esc_url($heygov_banner_img_big) ?>" />
 								</td>
 							</tr>
 
 							<tr>
 								<th><label for="heygov_banner_image_small">Banner mobile image</label></th>
 								<td>
-									<input type="file" name="heygov_banner[image_small]" id="heygov_banner_image_small" />
-									<input type="hidden" name="heygov_banner[image_small]" id="heygov_banner_image_small_inp" value="<?php echo $heygov_banner_img_small ?>" />
+									<input type="file" name="heygov_banner[image_small]" id="heygov_banner_image_small" accept="image/*" />
+									<input type="hidden" name="heygov_banner[image_small]" id="heygov_banner_image_small_inp" value="<?php echo esc_url($heygov_banner_img_small) ?>" />
 								</td>
 							</tr>
 						</tbody>
@@ -214,9 +218,8 @@ if (isset($_POST['heygov_banner'])) {
 
 		jQuery('#heygov_banner_image_small, #heygov_banner_image_big').change(event => {
 			const lastImage = event.target.id.split('_').pop()
-			heyGovUploadFile(event.target.files[0]).then(re => {
-				console.log('OK', re.source_url)
 
+			heyGovUploadFile(event.target.files[0]).then(re => {
 				jQuery(`#${event.target.id}_inp`).val(re.source_url)
 				jQuery(`.heygov-apps-banner-image-${lastImage}`).attr('src', re.source_url)
 			}, error => {

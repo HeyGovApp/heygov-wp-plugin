@@ -2,17 +2,18 @@
 /*
 Plugin Name: HeyGov
 Plugin URI: https://heygov.com
-Version: 1.2.0
 Description: Manage the HeyGov widget on your municipality WordPress website
+Version: 1.2.1
+Requires at least: 5.0
+Requires PHP: 7.0
 Author: HeyGov
 Author URI: https://heygov.com
 License: GPL2
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 define('HEYGOV_URL', plugin_dir_url( __FILE__ ));
 define('HEYGOV_DIR', plugin_dir_path( __FILE__ ));
-
-require HEYGOV_DIR . 'vendor/autoload.php';
 
 require_once 'includes/class/heygov-resource.php';
 require_once 'includes/class/heygov-settings.php';
