@@ -3,11 +3,10 @@
 Plugin Name: HeyGov
 Plugin URI: https://heygov.com
 Description: Manage the HeyGov widget on your municipality WordPress website
-Version: 1.2.1
+Version: 1.2.2
 Requires at least: 5.0
 Requires PHP: 7.0
 Author: HeyGov
-Author URI: https://heygov.com
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -59,7 +58,7 @@ class HeyGov {
 		}
 
 		add_filter('plugin_action_links_heygov/heygov.php', [$this, 'actionLinks']);
-		add_action( 'init', 'heygov_load_module' );
+		add_action('init', 'heygov_load_module');
 	}
 
 	public function actionLinks(array $links) {

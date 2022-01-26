@@ -3,8 +3,8 @@
 class HeyGovResource {
 
 	public function load_admin_includes() {
-		wp_enqueue_style('heygov-admin-css', HEYGOV_URL . 'assets/css/heygov-admin.css');
-		wp_enqueue_style('heygov-site-css', HEYGOV_URL . 'assets/css/heygov-site.css');
+		wp_enqueue_style('heygov-admin', HEYGOV_URL . 'assets/css/heygov-admin.css');
+		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css');
 		wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/heygov-admin.js');
 
 		wp_localize_script('heygov-admin', 'HeyGov', [
@@ -14,19 +14,19 @@ class HeyGovResource {
 	}
 
 	public function load_site_includes() {
-		wp_enqueue_style('heygov-site-css', HEYGOV_URL . 'assets/css/heygov-site.css');
+		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css');
 	}
 
 	public function load_widget() { 
-		$heygov_id          = get_option('heygov_id');
+		$heygov_id = get_option('heygov_id');
 
 		if ($heygov_id) :
 			$heygov_features = get_option('heygov_features') ?: 'issues';
 			$heygov_btn_text = get_option('heygov_btn_text') ?: 'Report an Issue';
 			$heygov_btn_position = get_option('heygov_btn_position') ?: 'middle-right';
-			$buttonStyle = $heygov_btn_position === 'none' ? '' : 'data-heygov-button-style="' . $heygov_btn_position . '"';
+			$buttonStyle = $heygov_btn_position === 'none' ? '' : 'data-heygov-button-style="' . esc_attr($heygov_btn_position) . '"';
 			?>
-			<script src="https://files.heygov.com/widget.js" data-heygov-jurisdiction="<?php echo $heygov_id; ?>" data-heygov-features="<?php echo $heygov_features; ?>" <?php echo $buttonStyle ?> data-heygov-button-text="<?php echo $heygov_btn_text; ?>"></script>
+			<script src="https://files.heygov.com/widget.js" data-heygov-jurisdiction="<?php echo esc_attr($heygov_id); ?>" data-heygov-features="<?php echo esc_attr($heygov_features); ?>" <?php echo $buttonStyle ?> data-heygov-button-text="<?php echo esc_attr($heygov_btn_text); ?>"></script>
 			<?php
 		endif;
 	}

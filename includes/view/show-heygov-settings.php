@@ -37,8 +37,8 @@ if (isset($_POST['heygov'])) {
 
 // save widget settings
 if (isset($_POST['heygov_widget'])) {
-	$heygov_btn_text	= $_POST['heygov_widget']['text'];
-	$heygov_btn_position = $_POST['heygov_widget']['position'];
+	$heygov_btn_text = sanitize_text_field($_POST['heygov_widget']['text']);
+	$heygov_btn_position = sanitize_text_field($_POST['heygov_widget']['position']);
 	update_option('heygov_btn_text', $heygov_btn_text);
 	update_option('heygov_btn_position', $heygov_btn_position);
 
@@ -59,11 +59,9 @@ if (isset($_POST['heygov_banner'])) {
 
 	echo '<div class="notice notice-success"><p>HeyGov apps banner is updated.</p></div>';
 }
-
 ?>
 
 <div class="wrap">
-
 	<h1 class="wp-heading-inline">HeyGov</h1>
 	<hr class="wp-header-end">
 
