@@ -40,10 +40,10 @@ class HeyGovResource {
 			require_once HEYGOV_DIR . 'includes/view/apps-banner.php';
 			$html = ob_get_contents();
 			ob_end_clean();
-
 			?>
-			<script>
-			const HeyGovBanner = <?php echo json_encode('<div class="heygov-apps-banner-wrapper">' . $html . '</div>') ?>;
+
+			<script type="text/javascript">
+			const HeyGovBanner = <?php echo json_encode(wp_kses('<div class="heygov-apps-banner-wrapper">' . $html . '</div>', 'post')) ?>;
 			jQuery(HeyGovBanner).insertBefore('.footer-main, .footer_wrap')
 			</script>
 			<?php

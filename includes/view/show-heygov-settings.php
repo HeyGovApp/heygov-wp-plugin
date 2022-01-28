@@ -19,7 +19,7 @@ if (isset($_POST['heygov'])) {
 	$id = heygov_validate_id(sanitize_text_field($_POST['heygov']['id']));
 
 	if (is_wp_error($id)) {
-		echo '<div class="notice notice-error"><p>' . $id->get_error_message() . '</p></div>';
+		echo wp_kses('<div class="notice notice-error"><p>' . $id->get_error_message() . '</p></div>', 'post');
 	} else {
 		$heygov_id = $id;
 		update_option('heygov_id', $id);
@@ -30,8 +30,9 @@ if (isset($_POST['heygov'])) {
 			update_option('heygov_features', implode(',', $heygov_features));
 		}
 
-
-		echo '<div class="notice notice-success"><p>HeyGov ID and apps have been saved.</p></div>';
+		?>
+		<div class="notice notice-success"><p>HeyGov ID and apps have been saved.</p></div>
+		<?php
 	}
 }
 
@@ -42,7 +43,9 @@ if (isset($_POST['heygov_widget'])) {
 	update_option('heygov_btn_text', $heygov_btn_text);
 	update_option('heygov_btn_position', $heygov_btn_position);
 
-	echo '<div class="notice notice-success"><p>HeyGov widget is updated.</p></div>';
+	?>
+	<div class="notice notice-success"><p>HeyGov widget is updated.</p></div>
+	<?php
 }
 
 // save banner settings
@@ -57,7 +60,9 @@ if (isset($_POST['heygov_banner'])) {
 	update_option('heygov_banner_img_big', $heygov_banner_img_big);
 	update_option('heygov_banner_img_small', $heygov_banner_img_small);
 
-	echo '<div class="notice notice-success"><p>HeyGov apps banner is updated.</p></div>';
+	?>
+	<div class="notice notice-success"><p>HeyGov apps banner is updated.</p></div>
+	<?php
 }
 ?>
 
@@ -65,7 +70,7 @@ if (isset($_POST['heygov_banner'])) {
 	<h1 class="wp-heading-inline">HeyGov</h1>
 	<hr class="wp-header-end">
 
-	<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
+	<form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post">
 
 		<table class="form-table">
 			<tr>
@@ -104,7 +109,7 @@ if (isset($_POST['heygov_banner'])) {
 		<div class="heygov-feature">
 			<h3>HeyGov widget appearance</h3>
 
-			<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
+			<form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post">
 
 				<table class="form-table">
 					<tbody>
@@ -152,10 +157,10 @@ if (isset($_POST['heygov_banner'])) {
 		<div class="heygov-feature">
 			<h3>HeyGov Apps banner</h3>
 
-			<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
+			<form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post">
 				<p><label><input type="checkbox" name="heygov_banner[heygov_banner]" id="heygov_banner_toggle" <?php checked($heygov_banner) ?> /> Display a banner with HeyGov apps download links on the footer of your website</label></p>
 
-				<div class="heygov-apps-banner-options <?php if (!$heygov_banner) echo 'hidden' ?>">
+				<div class="heygov-apps-banner-options <?php if (!$heygov_banner) echo esc_attr('hidden') ?>">
 					<table class="form-table">
 						<tbody>
 							<tr>
@@ -199,7 +204,7 @@ if (isset($_POST['heygov_banner'])) {
 
 		</div>
 
-		<script>
+		<script type="text/javascript">
 		const $banners = document.querySelectorAll('.heygov-apps-banner')
 
 		jQuery('#heygov_banner_toggle').change(() => {
