@@ -28,6 +28,11 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 5. Activate the plugin on Plugins page
 6. Add your HeyGov ID in WP Admin -> HeyGov settings page
 
+== Screenshots ==
+
+1. Example of the HeyGov widget on a city website
+2. Customisable settings for HeyGov widget
+
 == Changelog ==
 
 = 1.2.3 =
