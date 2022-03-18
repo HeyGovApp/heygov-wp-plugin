@@ -87,7 +87,7 @@ if (isset($_POST['heygov_banner'])) {
 						<legend class="screen-reader-text"><span>HeyGov apps to enable </span></legend>
 						<p>
 							<label><input name="heygov[features][]" type="checkbox" value="issues" <?php checked(in_array('issues', $heygov_features)) ?>> HeyGov 311</label><br>
-							<label><input name="heygov[features][]" type="checkbox" value="forms" <?php checked(in_array('forms', $heygov_features)) ?>> HeyLicense</label>
+							<label><input name="heygov[features][]" type="checkbox" value="forms" <?php checked(in_array('forms', $heygov_features)) ?>> HeyLicense</label><br>
 							<label><input name="heygov[features][]" type="checkbox" value="payments" <?php checked(in_array('payments', $heygov_features)) ?>> HeyGov QuickPay</label>
 						</p>
 						<p class="description">
