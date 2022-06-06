@@ -41,6 +41,8 @@ function heygov_validate_id(string $id) {
 	return $id;
 }
 
+
+
 class HeyGov {
 
 	public function __construct() {
@@ -55,6 +57,7 @@ class HeyGov {
 			add_action('wp_footer', array($resource, 'load_widget'));
 			add_action('wp_footer', array($resource, 'load_apps_banner'));
 			add_shortcode('heygov-widget', array($setting, 'heygov_shortcode'));
+			add_shortcode('heygov-forms', array($setting, 'heygov_forms_shortcode'));
 		}
 
 		add_filter('plugin_action_links_heygov/heygov.php', [$this, 'actionLinks']);

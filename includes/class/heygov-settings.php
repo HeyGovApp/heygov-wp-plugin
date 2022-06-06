@@ -30,4 +30,9 @@ class HeyGovSettings {
         return $outputString;
     }
 
+
+    function heygov_forms_shortcode() {
+        return "Hello from the heygov forms shortcode";
+    }
+
 }
