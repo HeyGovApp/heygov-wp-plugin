@@ -208,6 +208,7 @@ if (isset($_POST['heygov_banner'])) {
 		<!-- Adding forms from heygov to muni website --> 
 		<div class="heygov-feature">
 			<h3>Display heygov forms on your website</h3>
+			<p>Copy shortcode from below ⬇️ & paste on to the page where you want the HeyGov forms to be displayed </p>
 			<code>[heygov-forms]</code>
 		</div>
 
