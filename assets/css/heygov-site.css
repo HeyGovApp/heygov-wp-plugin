@@ -86,3 +86,80 @@
 		width: 125px;
 	}
 }
+
+.heygov-mb-3 {
+	margin-bottom: 1.5rem!important;
+}
+.heygov-p-3 {
+	padding: 1rem!important;
+}
+.heygov-pt-3 {
+	padding-top: 1.5rem!important;
+}
+.heygov-my-2 {
+	margin-top: 0.5rem!important;
+    margin-bottom: 0.5rem!important;
+}
+.heygov-px-3 {
+	padding-right: 1rem!important;
+    padding-left: 1rem!important;
+}
+.heygov-card {
+   position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: 1.56rem; 
+}
+.heygov-card-body {
+	flex: 1 1 auto;
+    padding: 1rem 1rem;
+}
+.heygov-border-1 {
+	border-width: 1px!important;
+}
+
+
+/* .heygov-ratio {
+	position: relative; 
+	width: 100%;
+}
+.heygov-ratio-1x1 {
+    --bs-aspect-ratio: 100%;
+} */
+
+.heygov-card-form {
+	overflow: hidden;
+}
+
+.heygov-card-form .heygov-form-icon {
+	right: -1.6rem!important;
+    position: absolute;
+    left: auto;
+    width: 8rem;
+    height: 8rem;
+    color: #e0e0e0;
+    opacity: 0.5;
+    overflow: hidden;
+}
+.heygov-card-form .has-icon {
+	background-color: rgba(224, 224, 224, 0.4);
+}
+
+@media (max-width: 575.98px) {
+	.heygov-card-form .heygov-form-icon {
+		width: 7rem;
+	}
+}
+@media (min-width: 992px) {
+.heygov-row-cols-lg-4 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+
+}
+

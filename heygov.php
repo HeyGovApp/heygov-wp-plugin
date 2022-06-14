@@ -56,8 +56,9 @@ class HeyGov {
 			add_action('wp_enqueue_scripts', array($resource, 'load_site_includes'));
 			add_action('wp_footer', array($resource, 'load_widget'));
 			add_action('wp_footer', array($resource, 'load_apps_banner'));
+			add_shortcode('heygov-forms', array($resource, 'heygov_forms_shortcode'));
 			add_shortcode('heygov-widget', array($setting, 'heygov_shortcode'));
-			add_shortcode('heygov-forms', array($setting, 'heygov_forms_shortcode'));
+			
 		}
 
 		add_filter('plugin_action_links_heygov/heygov.php', [$this, 'actionLinks']);
