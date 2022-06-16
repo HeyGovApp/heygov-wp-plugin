@@ -64,10 +64,8 @@ class HeyGovResource {
 				}
 				$forms = wp_remote_retrieve_body($forms);
 				$forms = json_decode($forms);
-	
             set_transient( 'forms', $forms, 12 * HOUR_IN_SECONDS );
         }
-        // Use the data like you would have normally... */
         require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
 
         $forms = ob_get_contents();

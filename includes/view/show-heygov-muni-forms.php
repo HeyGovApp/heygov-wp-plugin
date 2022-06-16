@@ -11,15 +11,19 @@
             </div>
         </div>
 
-        <div class="heygov-row align-items-stretch heygov-mb-3">
+        <div class="heygov-row heygov-mb-3">
             <?php  foreach($forms as $form ) : ?> 
-                <div class="heygov-col-lg-25 heygov-col-md-33 heygov-col-sm-50 heygov-card heygov-ratio heygov-ratio-1x1"style="background: <?php echo $form->department_color ? $form->department_color : 'rgba(224, 224, 224, 0.4)'; ?>">
-                    <a href="https://app.heygov.com/<?php echo $heygov_id; ?>/forms/<?php echo $form->slug; ?>" class="heygov-card-body heygov-card-form heygov-text-dark m-2">
-                        <i class="fas fa-<?php echo $form->icon ? $form->icon : ''?> fa-8x heygov-form-icon"></i>
-                        <div class="heygov-card-title">
-                            <h6> <?php echo $form->name ?></h6>
-                        </div>
-                    </a>
+                <div class="heygov-col-lg-25 heygov-col-md-33 heygov-col-sm-50" style="background: <?php echo $form->department_color ? $form->department_color : ''; ?>">
+                   <div class="heygov-card heygov-ratio heygov-ratio-1x1 ms-2 <?php echo $form->icon ? 'has-icon' : ''; ?>">
+                        <a href="https://app.heygov.com/<?php echo $heygov_id; ?>/forms/<?php echo $form->slug; ?>" class="heygov-text-dark">
+                            <div class="heygov-card-body heygov-card-form">
+                                <i class="fa fa-<?php echo $form->icon ? $form->icon : ''?> fa-5x heygov-form-icon"></i>
+                                <div class="heygov-card-title">
+                                    <h6> <?php echo $form->name ?></h6>
+                                </div>
+                            </div>
+                        </a>
+                   </div>
                 </div>
             <?php endforeach; ?>
         </div>
