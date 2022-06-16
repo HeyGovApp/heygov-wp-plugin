@@ -99,6 +99,7 @@ h6 {
 	flex-wrap:wrap;
 	width:calc(100% + 20px);
 	margin:0 -10px 5px;  
+
 	
 }
 
@@ -113,6 +114,7 @@ h6 {
 
 .heygov-col-sm-50 {
 	width: 50%; 
+
 	 
 }
 .heygov-justify-content-center {
@@ -121,11 +123,13 @@ h6 {
 @media (min-width: 992px) {
 	.heygov-col-lg-25 {
 		width: 20%!important; 
+	
 	}
 }
 @media (min-width: 768px) {
 	.heygov-col-md-33 {
 		width:33%; 
+	
 	}
 }   
 .heygov-mb-3 {

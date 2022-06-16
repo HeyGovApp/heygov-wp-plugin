@@ -14,7 +14,7 @@
         <div class="heygov-row heygov-mb-3">
             <?php  foreach($forms as $form ) : ?> 
                 <div class="heygov-col-lg-25 heygov-col-md-33 heygov-col-sm-50" style="background: <?php echo $form->department_color ? $form->department_color : ''; ?>">
-                   <div class="heygov-card heygov-ratio heygov-ratio-1x1 ms-2 <?php echo $form->icon ? 'has-icon' : ''; ?>">
+                   <div class="heygov-card heygov-ratio heygov-ratio-1x1 heygov-my-2 <?php echo $form->icon ? 'has-icon' : ''; ?>">
                         <a href="https://app.heygov.com/<?php echo $heygov_id; ?>/forms/<?php echo $form->slug; ?>" class="heygov-text-dark">
                             <div class="heygov-card-body heygov-card-form">
                                 <i class="fa fa-<?php echo $form->icon ? $form->icon : ''?> fa-5x heygov-form-icon"></i>
