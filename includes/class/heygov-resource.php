@@ -55,19 +55,16 @@ class HeyGovResource {
         // HeyGov ID
         $heygov_id = get_option('heygov_id');
 
-        $forms = wp_remote_get('https://api.heygov.com/'.$heygov_id.'/forms?status=public');
-            if (is_wp_error($forms)) {
-                return $forms;
-            }
-            $forms = wp_remote_retrieve_body($forms);
-            $forms = json_decode($forms);
-
-
-       /*  // Get any existing copy of our transient data
+       // Get any existing copy of our transient data
         if ( false === ( $forms = get_transient( 'forms' ) ) ) {
             // It wasn't there, so regenerate the data and save the transient
-            $args = array();
-            $forms = new WP_Query($args);
+			$forms = wp_remote_get('https://api.heygov.com/'.$heygov_id.'/forms?status=public');
+				if (is_wp_error($forms)) {
+					return $forms;
+				}
+				$forms = wp_remote_retrieve_body($forms);
+				$forms = json_decode($forms);
+	
             set_transient( 'forms', $forms, 12 * HOUR_IN_SECONDS );
         }
         // Use the data like you would have normally... */
