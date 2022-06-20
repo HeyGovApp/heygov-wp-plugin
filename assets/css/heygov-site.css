@@ -1,11 +1,19 @@
 h6 {
-	margin-top: 0;
-    margin-bottom: 0.5rem;
-	margin-left: 1rem; 
-    font-weight: 700;
-    line-height: 1.2;
-	font-size: 0.8rem;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 100%;
 }
+h3 {
+
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 36px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	letter-spacing: 0.3px;
+}
+
 .heygov-apps-banner-wrapper {
 	margin-top: 1rem;
 	margin-bottom: 2rem;
@@ -98,38 +106,35 @@ h6 {
 	flex-direction:row;
 	flex-wrap:wrap;
 	width:calc(100% + 20px);
-	margin:0 -10px 5px;  
-
-	
+	margin:0 -10px 5px; 
 }
 
 .heygov-col { 
-	display:flex;
-    flex-direction:column;
-	flex-basis:100%;
+	display:flex;  
+	flex-direction:column;
+    flex-basis:100%;
 	flex:1;  
     padding-left:10px;
-	padding-right:10px; 
+	padding-right:10px;  
 }
 
-.heygov-col-sm-50 {
+.heygov-row-cols-2 {
+	flex: 0 0 auto; 
 	width: 50%; 
-
-	 
 }
 .heygov-justify-content-center {
 	justify-content:center; 
 }
 @media (min-width: 992px) {
-	.heygov-col-lg-25 {
-		width: 20%!important; 
-	
+	.heygov-row-cols-lg-4 {
+		flex: 0 0 auto; 
+		width: 25% !important; 
 	}
 }
 @media (min-width: 768px) {
-	.heygov-col-md-33 {
-		width:33%; 
-	
+	.heygov-row-cols-md-3 {
+		flex: 0 0 auto; 
+		width:33.333%; 
 	}
 }   
 .heygov-mb-3 {
@@ -159,6 +164,10 @@ h6 {
 	margin-left: 1rem!important;
     margin-right: 1rem!important;
 }
+.heygov-mx-1 {
+	margin-left: 0.5rem!important;
+    margin-right: 0.5rem!important;
+}
 .heygov-px-3 {
 	padding-right: 1rem!important;
     padding-left: 1rem!important;
@@ -169,6 +178,7 @@ h6 {
 	border-radius: 30px;
 	overflow: hidden;
 	width: 100%; 
+	
 	 
 }
 .heygov-card-header {
@@ -219,9 +229,14 @@ h6 {
 .heygov-card.has-icon {
 	background-color: rgba(224, 224, 224, 0.4)!important;
 }
+.heygov-card .heygov-form-price {
+	position: absolute;
+	bottom: 1rem;
+}
 
-.heygov-card-form .heygov-form-icon {
-	right: -1rem!important;
+.heygov-card-form .heygov-card-body .heygov-form-icon {
+	right: -1.6rem!important; 
+	top: -0.5rem; 
     position: absolute; 
     left: auto;
     width: 8rem;

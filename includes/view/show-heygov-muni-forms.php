@@ -13,14 +13,15 @@
 
         <div class="heygov-row heygov-mb-3">
             <?php  foreach($forms as $form ) : ?> 
-                <div class="heygov-col-lg-25 heygov-col-md-33 heygov-col-sm-50" style="background: <?php echo $form->department_color ? $form->department_color : ''; ?>">
-                   <div class="heygov-card heygov-ratio heygov-ratio-1x1 heygov-my-2 <?php echo $form->icon ? 'has-icon' : ''; ?>">
-                        <a href="https://app.heygov.com/<?php echo $heygov_id; ?>/forms/<?php echo $form->slug; ?>" class="heygov-text-dark">
-                            <div class="heygov-card-body heygov-card-form">
+                <div class="heygov-row-cols-lg-4 heygov-row-cols-md-3 heygov-row-cols-2">
+                   <div class="heygov-col">
+                        <a href="https://app.heygov.com/<?php echo $heygov_id; ?>/forms/<?php echo $form->slug; ?>/send" class="heygov-card heygov-card-form heygov-ratio heygov-ratio-1x1 heygov-my-2 heygov-text-dark <?php echo $form->icon ? 'has-icon' : ''; ?>" style="background: <?php echo $form->department->color ? $form->department_color : '#fc8f9c'; ?>">
+                            <div class="heygov-card-body">
                                 <i class="fa fa-<?php echo $form->icon ? $form->icon : ''?> fa-5x heygov-form-icon"></i>
                                 <div class="heygov-card-title">
                                     <h6> <?php echo $form->name ?></h6>
                                 </div>
+                                <h3 class="heygov-form-price"><?php echo $form->price ? '$'.number_format($form->price, 2, '.', '') : '';  ?> </h3>
                             </div>
                         </a>
                    </div>
