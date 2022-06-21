@@ -13,7 +13,7 @@
 
         <div class="heygov-row heygov-mb-3">
             <?php  foreach($forms as $form ) : ?> 
-                <div class="heygov-row-cols-lg-4 heygov-row-cols-md-3 heygov-row-cols-2">
+                <div class="heygov-row-cols-lg-5 heygov-row-cols-md-3 heygov-row-cols-2">
                    <div class="heygov-col">
                         <a href="https://app.heygov.com/<?php echo $heygov_id; ?>/forms/<?php echo $form->slug; ?>/send" class="heygov-card heygov-card-form heygov-ratio heygov-ratio-1x1 heygov-my-2 heygov-text-dark <?php echo $form->icon ? 'has-icon' : ''; ?> <?php echo $form->department_id ? 'has-department' : ''; ?>" style="background-color: <?php echo $form->department->color ? $form->department->color : ''; ?>">
                             <div class="heygov-card-body">

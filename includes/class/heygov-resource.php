@@ -6,6 +6,7 @@ class HeyGovResource {
 		wp_enqueue_style('heygov-admin', HEYGOV_URL . 'assets/css/heygov-admin.css');
 		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css');
 		wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/heygov-admin.js');
+		
 
 		wp_localize_script('heygov-admin', 'HeyGov', [
 			'apiUrl' => esc_url_raw( rest_url() ),
@@ -49,7 +50,14 @@ class HeyGovResource {
 			<?php
 		}
 	}
-	function heygov_forms_shortcode() {
+	function heygov_forms_shortcode( $atts = array()) {
+		$args = shortcode_atts( array(
+			'container-small' => false,
+			'department' => 'all'
+		), $atts );
+
+		$small = $args['container-small']; 
+		$department = $args['department'];
 
         ob_start(); 
         // HeyGov ID
@@ -58,20 +66,28 @@ class HeyGovResource {
        // Get any existing copy of our transient data
         if ( false === ( $forms = get_transient( 'forms' ) ) ) {
             // It wasn't there, so regenerate the data and save the transient
-			$forms = wp_remote_get('https://api.heygov.com/'.$heygov_id.'/forms?status=public');
+			$forms = wp_remote_get('https://heygov-api-develop-nxb3467cgq-uc.a.run.app/'.$heygov_id.'/forms?status=public&expand=department&department='.$department);
 				if (is_wp_error($forms)) {
 					return $forms;
 				}
 				$forms = wp_remote_retrieve_body($forms);
 				$forms = json_decode($forms);
             set_transient( 'forms', $forms, 12 * HOUR_IN_SECONDS );
-        }
+       }
+	   
         require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
+		if($small === "true" ) {
+			wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/remove-add-class.js');
+		}
+		
 
         $forms = ob_get_contents();
+	
         ob_end_clean();
     
         return $forms;
     }
+
+
 
 }

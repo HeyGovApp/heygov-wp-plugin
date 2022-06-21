@@ -126,9 +126,13 @@ h1, h2, h3, h4, h5, h6 {
 	justify-content:center; 
 }
 @media (min-width: 992px) {
+	.heygov-row-cols-lg-5 {
+		flex: 0 0 auto; 
+		width: 20%!important;
+	} 
 	.heygov-row-cols-lg-4 {
 		flex: 0 0 auto; 
-		width: 20%!important; 
+		width: 25%!important;
 	}
 }
 @media (min-width: 768px) {
