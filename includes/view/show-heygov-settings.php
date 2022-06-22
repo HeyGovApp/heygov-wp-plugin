@@ -216,7 +216,7 @@ if (isset($_POST['heygov_banner'])) {
 				<!-- Conatiner size shortcode filter --> 
 				<p><b>Container size</b></p>
 				<code>[heygov-forms container-small="true"]</code>
-				<p>For website with small container, on large screenit it will display 4 forms card instead of 5</p>
+				<p>For website with small container, on large screen it will display 4 forms card instead of 5</p>
 			</div>
 			<div>
 				<!-- Department filter --> 
