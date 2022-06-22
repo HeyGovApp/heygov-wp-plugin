@@ -2,7 +2,7 @@
     <div class="heygov-card-body">
         <div class="heygov-row">
             <div class="heygov-col heygov-pt-3">
-                <h3>Forms &amp; Permits</h3>
+                <h3 clas="heygov-h6">Forms &amp; Permits</h3>
             </div>
             <div class="heygov-col-auto">
                 <a href="https://app.heygov.com/<?php echo $heygov_id; ?>/forms" >
@@ -19,9 +19,9 @@
                             <div class="heygov-card-body">
                                 <i class="fa fa-<?php echo $form->icon ? $form->icon : ''?> fa-5x heygov-form-icon" style="color: <?php echo $form->department->color ? $form->department->color : ''; ?>"></i>
                                 <div class="heygov-card-title">
-                                    <h6> <?php echo $form->name ?></h6>
+                                    <h6 class="heygov-h6"> <?php echo $form->name ?></h6>
                                 </div>
-                                <h3 class="heygov-form-price"><?php echo $form->price ? '$'.number_format($form->price, 2, '.', '') : '';  ?> </h3>
+                                <h3 class="heygov-h3 heygov-form-price"><?php echo $form->price ? '$'.number_format($form->price, 2, '.', '') : '';  ?> </h3>
                             </div>
                         </a>
                    </div>

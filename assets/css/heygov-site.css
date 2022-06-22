@@ -1,16 +1,14 @@
-h6 {
-	font-weight: 700;
+.heygov-h6 {
+	font-weight: 600;
 	font-size: 16px;
 	line-height: 100%;
+	letter-spacing: 0.3px;
 }
-h3 {
+.heygov-h3 {
 
-	font-weight: 700;
-	font-size: 20px;
+	font-weight: 600;
+	font-size: 22px;
 	line-height: 36px;
-}
-
-h1, h2, h3, h4, h5, h6 {
 	letter-spacing: 0.3px;
 }
 
@@ -237,7 +235,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .heygov-card .heygov-form-price {
 	position: absolute;
-	bottom: 1rem;
+	bottom: 0.5rem;
 }
 
 .heygov-card-form .heygov-card-body .heygov-form-icon {
