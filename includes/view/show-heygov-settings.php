@@ -210,6 +210,23 @@ if (isset($_POST['heygov_banner'])) {
 			<h3>Display heygov forms on your website</h3>
 			<p>Copy shortcode from below ⬇️ & paste on to the page where you want the HeyGov forms to be displayed </p>
 			<code>[heygov-forms]</code>
+
+			<h6>Forms filters examples</h6>
+			<div>
+				<!-- Conatiner size shortcode filter --> 
+				<p><b>Container size</b></p>
+				<code>[heygov-forms container-small="true"]</code>
+				<p>For website with small container, on large screenit it will display 4 forms card instead of 5</p>
+			</div>
+			<div>
+				<!-- Department filter --> 
+				<p><b>Department id, slug or name</b></p>
+				<code>[heygov-forms department="4"]</code>
+				<code>[heygov-forms department="parks-and-rec"]</code>
+				<code>[heygov-forms department="Parks and Rec"]</code>
+			</div>
+			
+			
 		</div>
 
 		<script type="text/javascript">
