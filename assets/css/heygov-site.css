@@ -228,7 +228,7 @@
 } 
 
 .heygov-card.has-icon {
-	background-color: rgba(224, 224, 224, 0.4);
+	background-color: rgba(224, 224, 224, 0.4); 
 }
 .heygov-card.has-department {
 	background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
@@ -239,19 +239,20 @@
 }
 
 .heygov-card-form .heygov-card-body .heygov-form-icon {
-	right: -1rem!important; 
-	top: -0.4rem; 
+	right: -3!important; 
     position: absolute; 
     left: auto;
     color: #e0e0e0;
-    opacity: 0.5;
+    opacity: 0.05!important;
     overflow: hidden;
-	font-size: 120px; 
+	width: 8rem;
+    height: 8rem;
+
 }
 
 
 @media (max-width: 575.98px) {
-	.heygov-card-form .heygov-form-icon {
-		width: 7rem;
+	.heygov-card-form .heygov-card-body .heygov-form-icon {
+		width: 6rem;
 	}
 }

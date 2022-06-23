@@ -17,7 +17,8 @@
                    <div class="heygov-col">
                         <a href="https://app.heygov.com/<?php echo $heygov_id; ?>/forms/<?php echo $form->slug; ?>/send" class="heygov-card heygov-card-form heygov-ratio heygov-ratio-1x1 heygov-my-2 heygov-text-dark <?php echo $form->icon ? 'has-icon' : ''; ?> <?php echo $form->department_id ? 'has-department' : ''; ?>" style="background-color: <?php echo $form->department->color ? $form->department->color : ''; ?>">
                             <div class="heygov-card-body">
-                                <i class="fa fa-<?php echo $form->icon ? $form->icon : ''?> fa-5x heygov-form-icon" style="color: <?php echo $form->department->color ? $form->department->color : ''; ?>"></i>
+                               <img src="<?php echo $form->icon ? esc_url(HEYGOV_URL . 'assets/' .$form->icon. '.svg') : ''?>" alt=""class="heygov-form-icon" width="160" height="128">
+                               <!--  <i class="fa fa-<?php echo $form->icon ? $form->icon : ''?> fa-5x heygov-form-icon" style="color: <?php echo $form->department->color ? $form->department->color : ''; ?>"></i> -->
                                 <div class="heygov-card-title">
                                     <h6 class="heygov-h6"> <?php echo $form->name ?></h6>
                                 </div>
