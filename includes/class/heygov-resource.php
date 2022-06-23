@@ -52,11 +52,11 @@ class HeyGovResource {
 	}
 	function heygov_forms_shortcode( $atts = array()) {
 		$args = shortcode_atts( array(
-			'container-small' => false,
+			'container' => 'large',
 			'department' => ''
 		), $atts );
 
-		$small = $args['container-small']; 
+		$container = $args['container']; 
 		$department = $args['department']; 
 
         ob_start(); 
@@ -83,8 +83,8 @@ class HeyGovResource {
 	
 		require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
 
-		if($small === "true" ) {
-			wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/remove-add-class.js');
+		if($container === "small" ) {
+			wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/heygov-remove-add-class.js');
 		}
 	
 		$forms = ob_get_contents();

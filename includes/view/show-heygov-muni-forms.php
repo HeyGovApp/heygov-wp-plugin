@@ -2,7 +2,7 @@
     <div class="heygov-card-body">
         <div class="heygov-row">
             <div class="heygov-col heygov-pt-3">
-                <h3 clas="heygov-h6">Forms &amp; Permits</h3>
+                <h3 class="heygov-h3">Forms &amp; Permits</h3>
             </div>
             <div class="heygov-col-auto">
                 <a href="https://app.heygov.com/<?php echo $heygov_id; ?>/forms" >
@@ -20,10 +20,9 @@
                                <?php if(!empty($form->icon)) : ?> 
                                     <img src="<?php echo esc_url(HEYGOV_URL . 'assets/' .$form->icon. '.svg') ?>" alt=""class="heygov-form-icon" width="160" height="128">
                                <?php endif; ?> 
-                                <div class="heygov-card-title">
-                                    <h6 class="heygov-h6"> <?php echo $form->name ?></h6>
-                                </div>
+                                <h6 class="heygov-h6 heygov-card-title"> <?php echo $form->name ?></h6>
                                 <h3 class="heygov-h3 heygov-form-price"><?php echo $form->price ? '$'.number_format($form->price, 2, '.', '') : '';  ?> </h3>
+                            
                             </div>
                         </a>
                    </div>

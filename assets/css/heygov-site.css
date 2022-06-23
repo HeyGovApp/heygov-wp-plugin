@@ -1,5 +1,5 @@
 *[class*='heygov-'] {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"!important;
 }
 
 .heygov-h6 {
@@ -7,13 +7,29 @@
 	font-size: 16px;
 	line-height: 100%;
 	letter-spacing: 0.3px;
+	color: black;
+	text-decoration: none;
+
 }
 .heygov-h3 {
-
 	font-weight: 600;
 	font-size: 22px;
 	line-height: 36px;
 	letter-spacing: 0.3px;
+	color:rgba(0, 0, 13); 
+	text-decoration: none; 
+}
+
+@media (max-width: 567px ) {
+	h3.heygov-h3 {
+		font-size: 16px!important;
+		margin: 0!important; 
+	}
+	h6.heygov-h6 {
+		font-size: 12px!important; 
+		margin: 0!important; 
+	}
+	
 }
 
 .heygov-apps-banner-wrapper {
@@ -120,12 +136,18 @@
 	padding-right:10px;  
 }
 
+
+
+.heygov-justify-content-center {
+	justify-content:center; 
+}
 .heygov-row-cols-2 {
 	flex: 0 0 auto; 
 	width: 50%; 
 }
-.heygov-justify-content-center {
-	justify-content:center; 
+.heygov-row-cols-1 {
+	flex: 0 0 auto; 
+	width: 100%; 
 }
 @media (min-width: 992px) {
 	.heygov-row-cols-lg-5 {
@@ -195,30 +217,22 @@
 	padding: 1rem; 
 }
 
-.heygov-card-footer {
-	border-color: gray;
-	border-top-width: 1px;
-	background-color: #fff;
-	font-size: 0.9rem;
-	border-radius: 0 0 30px 30px;
-	padding: 1rem 1.5rem;
-}
-
 .heygov-card-title {
 	margin-bottom: 0.5rem; 
-	position: relative;
+	position: relative; 
 }
 .heygov-border-1 {
 	border-width: 0.5px!important;
 }
-.heygov-text-dark {
-	color: black; 
+
+.heygov-text-dark   {
+	color: black!important; 
 	text-decoration: none;
 }
 .heygov-text-dark:hover {
-	color: black;
+	color: black!important; 
+	text-decoration: none;
 }
-
 .heygov-ratio {
 	position: relative;
 	width: 100%; 
@@ -239,12 +253,12 @@
 }
 .heygov-card .heygov-form-price {
 	position: absolute;
-	bottom: 0.5rem;
+	bottom: 0.2rem;
 }
 
 .heygov-card-form .heygov-card-body .heygov-form-icon {
 	right: -1rem!important;
-	top: -0.1rem!important; 
+	top: -0.5rem!important; 
     position: absolute; 
     left: auto;
     color: #e0e0e0;
@@ -254,7 +268,6 @@
     height: 8rem;
 
 }
-
 
 @media (max-width: 575.98px) {
 	.heygov-card-form .heygov-card-body .heygov-form-icon {
