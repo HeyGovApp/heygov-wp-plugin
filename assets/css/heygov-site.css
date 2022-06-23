@@ -1,3 +1,7 @@
+*[class*='heygov-'] {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 .heygov-h6 {
 	font-weight: 600;
 	font-size: 16px;
@@ -239,7 +243,8 @@
 }
 
 .heygov-card-form .heygov-card-body .heygov-form-icon {
-	right: -3!important; 
+	right: -1rem!important;
+	top: -0.1rem!important; 
     position: absolute; 
     left: auto;
     color: #e0e0e0;
