@@ -57,7 +57,7 @@ class HeyGovResource {
 		), $atts );
 
 		$small = $args['container-small']; 
-		$department = $args['department'];
+		$department = $args['department']; 
 
         ob_start(); 
         // HeyGov ID
@@ -73,22 +73,24 @@ class HeyGovResource {
 				$forms = wp_remote_retrieve_body($forms);
 				$forms = json_decode($forms); 
                 //set_transient( 'forms', $forms, 12 * HOUR_IN_SECONDS );
-        //}
+         // }
 
-		if(!empty($department)) {
-			$forms = wp_list_filter( $forms, ['department_id' => $department]);
+		if($department && !empty($department)) {
+			$forms = wp_list_filter( $forms, 
+			['department_id' => $department]
+			);
 		}   
-	   
-        require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
+	
+		require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
 
 		if($small === "true" ) {
 			wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/remove-add-class.js');
 		}
 	
-        $forms = ob_get_contents();
-        ob_end_clean();
-    
-        return $forms;
+		$forms = ob_get_contents();
+		ob_end_clean();
+	
+		return $forms;
     }
 
 
