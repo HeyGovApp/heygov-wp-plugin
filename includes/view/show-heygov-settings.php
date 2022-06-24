@@ -215,15 +215,15 @@ if (isset($_POST['heygov_banner'])) {
 			<div>
 				<!-- Conatiner size shortcode filter --> 
 				<p><b>Container size</b></p>
-				<code>[heygov-forms container-small="true"]</code>
+				<code>[heygov-forms container="small"]</code>
 				<p>For website with small container, on large screen it will display 4 forms card instead of 5</p>
 			</div>
 			<div>
 				<!-- Department filter --> 
-				<p><b>Department id, slug or name</b></p>
+				<p><b>Department id </b></p>
 				<code>[heygov-forms department="4"]</code>
-				<code>[heygov-forms department="parks-and-rec"]</code>
-				<code>[heygov-forms department="Parks and Rec"]</code>
+			    <!-- <code>[heygov-forms department="parks-and-rec"]</code>
+				<code>[heygov-forms department="Parks and Rec"]</code> -->
 			</div>
 			
 			

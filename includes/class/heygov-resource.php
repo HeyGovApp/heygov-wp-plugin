@@ -80,7 +80,6 @@ class HeyGovResource {
 				['department_id' => $department]
 			);
 		}
-
 		/* $forms = wp_filter_object_list($forms, array('department' => $department)); */
 
 		require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
