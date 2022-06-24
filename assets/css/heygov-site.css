@@ -9,6 +9,7 @@
 	letter-spacing: 0.3px;
 	color: black;
 	text-decoration: none;
+	margin: 0!important; 
 
 }
 .heygov-h3 {
@@ -18,16 +19,18 @@
 	letter-spacing: 0.3px;
 	color:rgba(0, 0, 13); 
 	text-decoration: none; 
+	margin: 0!important; 
 }
 
 @media (max-width: 567px ) {
 	h3.heygov-h3 {
 		font-size: 16px!important;
-		margin: 0!important; 
 	}
 	h6.heygov-h6 {
-		font-size: 12px!important; 
-		margin: 0!important; 
+		font-size: 12px!important;
+	}
+	article .entry-wrap  {
+		padding: 0!important;
 	}
 	
 }
