@@ -76,15 +76,11 @@ class HeyGovResource {
         }
 
 		if(!empty($department)) {
-			$filteredForms = []; 
-			foreach($forms as $form) {
-				if($form->department->slug == $department || $form->department->id == $department || $form->department->name == $department) {
-					array_push($filteredForms, $form); 
-				}
-			}
+			  $forms = array_filter($forms, function($form) use($department) {
+				return $form->department_id == $department || $form->department->slug == $department || $form->department->name == $department; 
+			  }
+			); 
 		}
-		$forms = $filteredForms; 
-		/* $forms = wp_filter_object_list($forms, array('department' => $department)); */
 
 		require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
 
