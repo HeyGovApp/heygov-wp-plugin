@@ -63,23 +63,22 @@ class HeyGovResource {
         // HeyGov ID
         $heygov_id = get_option('heygov_id');
 
-       // Get any existing copy of our transient data
-       if ( false === ( $forms = get_transient( 'forms' ) ) ) {
-            // It wasn't there, so regenerate the data and save the transient
+		// Get any existing copy of our transient data
+		if ( false === ( $forms = get_transient( 'forms' ) ) ) {
+			// It wasn't there, so regenerate the data and save the transient
 			$forms = wp_remote_get('https://heygov-api-develop-nxb3467cgq-uc.a.run.app/'.$heygov_id.'/forms?status=public&expand=department');
 				if (is_wp_error($forms)) {
 					return $forms;
 				}
-				$forms = wp_remote_retrieve_body($forms);
-				$forms = json_decode($forms); 
-                set_transient( 'forms', $forms, 12 * HOUR_IN_SECONDS );
-        }
+			$forms = wp_remote_retrieve_body($forms);
+			$forms = json_decode($forms); 
+			set_transient( 'forms', $forms, 12 * HOUR_IN_SECONDS );
+		}
 
 		if(!empty($department)) {
-			  $forms = array_filter($forms, function($form) use($department) {
+			$forms = array_filter($forms, function($form) use($department) {
 				return $form->department_id == $department || $form->department->slug == $department || $form->department->name == $department; 
-			  }
-			); 
+			}); 
 		}
 
 		require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
