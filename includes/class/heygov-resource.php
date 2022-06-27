@@ -64,7 +64,7 @@ class HeyGovResource {
         $heygov_id = get_option('heygov_id');
 
        // Get any existing copy of our transient data
-       if ( false === ( $forms = get_transient( 'forms' ) ) ) {
+       //if ( false === ( $forms = get_transient( 'forms' ) ) ) {
             // It wasn't there, so regenerate the data and save the transient
 			$forms = wp_remote_get('https://heygov-api-develop-nxb3467cgq-uc.a.run.app/'.$heygov_id.'/forms?status=public&expand=department');
 				if (is_wp_error($forms)) {
@@ -72,14 +72,18 @@ class HeyGovResource {
 				}
 				$forms = wp_remote_retrieve_body($forms);
 				$forms = json_decode($forms); 
-                set_transient( 'forms', $forms, 12 * HOUR_IN_SECONDS );
-         }
+                //set_transient( 'forms', $forms, 12 * HOUR_IN_SECONDS );
+        // }
 
-		if($department && !empty($department)) {
-			$forms = wp_list_filter( $forms, 
-				['department_id' => $department]
-			);
+		if(!empty($department)) {
+			$filteredForms = []; 
+			foreach($forms as $form) {
+				if($form->department->slug == $department || $form->department->id == $department || $form->department->name == $department) {
+					array_push($filteredForms, $form); 
+				}
+			}
 		}
+		$forms = $filteredForms; 
 		/* $forms = wp_filter_object_list($forms, array('department' => $department)); */
 
 		require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';

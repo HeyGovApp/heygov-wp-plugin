@@ -207,23 +207,25 @@ if (isset($_POST['heygov_banner'])) {
 
 		<!-- Adding forms from heygov to muni website --> 
 		<div class="heygov-feature">
-			<h3>Display heygov forms on your website</h3>
+			<h3 class="heygov-h3">Display heygov forms on your website</h3>
 			<p>Copy shortcode from below ⬇️ & paste on to the page where you want the HeyGov forms to be displayed </p>
 			<code>[heygov-forms]</code>
 
-			<h6>Forms filters examples</h6>
-			<div>
-				<!-- Conatiner size shortcode filter --> 
-				<p><b>Container size</b></p>
-				<code>[heygov-forms container="small"]</code>
-				<p>For website with small container, on large screen it will display 4 forms card instead of 5</p>
-			</div>
-			<div>
-				<!-- Department filter --> 
-				<p><b>Department id </b></p>
-				<code>[heygov-forms department="4"]</code>
-			    <!-- <code>[heygov-forms department="parks-and-rec"]</code>
-				<code>[heygov-forms department="Parks and Rec"]</code> -->
+			<div class="heygov-pt-3">
+				<h6 class="heygov-h6">Shortcode filter examples</h6>
+				<div>
+					<!-- Container size shortcode filter --> 
+					<p><b>Container size</b></p>
+					<code>[heygov-forms container="small"]</code>
+					<p>For website with small container, on large screen it will display 4 forms card instead of 5</p>
+				</div>
+				<div>
+					<!-- Department filter --> 
+					<p><b>Department id, slug or name </b></p>
+					<p><code>[heygov-forms department="4"]</code></p>
+					<p><code>[heygov-forms department="parks-and-rec"]</code></p>
+					<p><code>[heygov-forms department="Parks and Rec"]</code></p>
+				</div>
 			</div>
 			
 			
