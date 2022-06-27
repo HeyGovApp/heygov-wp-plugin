@@ -1,6 +1,6 @@
 <div class="heygov-card heygov-mb-3 heygov-border-1">
     <div class="heygov-card-body">
-        <div class="heygov-row">
+        <!-- <div class="heygov-row">
             <div class="heygov-col heygov-pt-3">
                 <h3 class="heygov-h3">Forms &amp; Permits</h3>
             </div>
@@ -9,7 +9,7 @@
                     <img src="https://files.heygov.com/assets/heygov-logo.png" alt="HeyGov Logo" height="100" width="100">
                 </a>
             </div>
-        </div>
+        </div> -->
 
         <div class="heygov-row heygov-mb-3">
             <?php  foreach($forms as $form ) : ?> 
