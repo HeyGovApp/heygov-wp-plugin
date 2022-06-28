@@ -168,6 +168,10 @@
 	}
 }
 @media (min-width: 768px) {
+	.heygov-row-cols-md-4 {
+		flex: 0 0 auto; 
+		width: 25%; 
+	}
 	.heygov-row-cols-md-3 {
 		flex: 0 0 auto; 
 		width: 33.333%; 

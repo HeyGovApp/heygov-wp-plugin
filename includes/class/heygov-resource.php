@@ -57,6 +57,7 @@ class HeyGovResource {
 		), $atts );
 
 		$maxcolumns = $args['maxcolumns']; 
+		$calc_medium = $maxcolumns - 1; 
 		$department = $args['department']; 
 
         ob_start(); 
