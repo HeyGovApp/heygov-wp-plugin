@@ -216,8 +216,8 @@ if (isset($_POST['heygov_banner'])) {
 				<div>
 					<!-- Container size shortcode filter --> 
 					<p><b>Container size</b></p>
-					<code>[heygov-forms container="small"]</code>
-					<p>For website with small container, on large screen it will display 4 forms card instead of 5</p>
+					<code>[heygov-forms maxcolumns="4"]</code>
+					<p>Maxcolumns number is the number of forms card  that will be displayed on large screen</p>
 				</div>
 				<div>
 					<!-- Department filter --> 
