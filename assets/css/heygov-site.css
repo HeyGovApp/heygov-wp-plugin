@@ -147,11 +147,8 @@
 .heygov-row-cols-2 {
 	flex: 0 0 auto; 
 	width: 50%; 
-}
-.heygov-row-cols-1 {
-	flex: 0 0 auto; 
-	width: 100%; 
-}
+} 
+
 @media (min-width: 992px) {
 	.heygov-row-cols-lg-5 {
 		flex: 0 0 auto; 
@@ -160,6 +157,14 @@
 	.heygov-row-cols-lg-4 {
 		flex: 0 0 auto; 
 		width: 25%!important;
+	}
+	.heygov-row-cols-lg-3 {
+		flex: 0 0 auto; 
+		width: 33.333%!important;
+	}
+	.heygov-row-cols-lg-2 {
+		flex: 0 0 auto; 
+		width: 50%!important; 
 	}
 }
 @media (min-width: 768px) {
