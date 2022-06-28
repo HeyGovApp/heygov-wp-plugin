@@ -35,6 +35,9 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 
 == Changelog ==
 
+= 1.4.0 = 
+* Added - Shortcode to display jurisdictions forms 
+
 = 1.3.0 =
 * Added - Option to enable HeyGov QuickPay
 
