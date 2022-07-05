@@ -206,6 +206,32 @@ if (isset($_POST['heygov_banner'])) {
 
 		</div>
 
+		<!-- Adding forms from heygov to muni website --> 
+		<div class="heygov-feature">
+			<h3 class="heygov-h3">Display heygov forms on your website</h3>
+			<p>Copy shortcode from below ⬇️ & paste on to the page where you want the HeyGov forms to be displayed </p>
+			<code>[heygov-forms]</code>
+
+			<div class="heygov-pt-3">
+				<h6 class="heygov-h6">Shortcode filter examples</h6>
+				<div>
+					<!-- Container size shortcode filter --> 
+					<p><b>Container size</b></p>
+					<code>[heygov-forms maxcolumns="4"]</code>
+					<p>Maxcolumns number is the number of forms card  that will be displayed on large screen</p>
+				</div>
+				<div>
+					<!-- Department filter --> 
+					<p><b>Department id, slug or name </b></p>
+					<p><code>[heygov-forms department="4"]</code></p>
+					<p><code>[heygov-forms department="parks-and-rec"]</code></p>
+					<p><code>[heygov-forms department="Parks and Rec"]</code></p>
+				</div>
+			</div>
+			
+			
+		</div>
+
 		<script type="text/javascript">
 		const $banners = document.querySelectorAll('.heygov-apps-banner')
 
