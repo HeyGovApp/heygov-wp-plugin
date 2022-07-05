@@ -67,9 +67,9 @@ class HeyGovResource {
 		// Get any existing copy of our transient data
 		if ( false === ( $forms = get_transient( 'forms' ) ) ) {
 			// It wasn't there, so regenerate the data and save the transient
-			$forms = wp_remote_get('https://heygov-api-develop-nxb3467cgq-uc.a.run.app/'.$heygov_id.'/forms?status=public&expand=department');
+			$forms = wp_remote_get('https://heygov-api-main-nxb3467cgq-uc.a.run.app/'.$heygov_id.'/forms?status=public&expand=department');
 				if (is_wp_error($forms)) {
-					return $forms;
+					$forms = []; 
 				}
 			$forms = wp_remote_retrieve_body($forms);
 			$forms = json_decode($forms); 
