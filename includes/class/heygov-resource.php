@@ -3,10 +3,9 @@
 class HeyGovResource {
 
 	public function load_admin_includes() {
-		wp_enqueue_style('heygov-admin', HEYGOV_URL . 'assets/css/heygov-admin.css');
-		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css');
-		wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/heygov-admin.js');
-		
+		wp_enqueue_style('heygov-admin', HEYGOV_URL . 'assets/css/heygov-admin.css', [], '1.4');
+		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.4');
+		wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/heygov-admin.js', [], '1.4', true);		
 
 		wp_localize_script('heygov-admin', 'HeyGov', [
 			'apiUrl' => esc_url_raw( rest_url() ),
@@ -15,7 +14,7 @@ class HeyGovResource {
 	}
 
 	public function load_site_includes() {
-		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css');
+		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.4');
 	}
 
 	public function load_widget() { 
