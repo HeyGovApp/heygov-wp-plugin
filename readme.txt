@@ -4,7 +4,7 @@ Tags: heygov, issue reporting, reporting, forms, permits
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,8 +36,11 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 
 == Changelog ==
 
+= 1.5.0 = 
+* Added - Shortcode to display venue availability
+
 = 1.4.0 = 
-* Added - Shortcode to display jurisdictions forms 
+* Added - Shortcode to display jurisdictions forms
 
 = 1.3.1 =
 * Added - Option to enable HeyReserve feature in widget

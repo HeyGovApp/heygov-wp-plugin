@@ -2,9 +2,9 @@
 
 // HeyGov ID
 $heygov_id = get_option('heygov_id');
-$heygov_features = explode(',', get_option('heygov_features') ?: 'issues');
 
 // widget info
+$heygov_features = explode(',', get_option('heygov_features') ?: 'issues');
 $heygov_btn_text = get_option('heygov_btn_text') ?: 'Report an Issue';
 $heygov_btn_position = get_option('heygov_btn_position') ?: 'middle-right';
 
@@ -23,26 +23,21 @@ if (isset($_POST['heygov'])) {
 	} else {
 		$heygov_id = $id;
 		update_option('heygov_id', $id);
-
-		if (isset($_POST['heygov']['features']) && is_array($_POST['heygov']['features'])) {
-			$heygov_features = array_map('sanitize_key', $_POST['heygov']['features']);
-
-			update_option('heygov_features', implode(',', $heygov_features));
-		}
-
 		?>
-		<div class="notice notice-success"><p>HeyGov ID and apps have been saved.</p></div>
+		<div class="notice notice-success"><p>HeyGov ID is updated.</p></div>
 		<?php
 	}
 }
 
 // save widget settings
 if (isset($_POST['heygov_widget'])) {
+	$heygov_features = array_map('sanitize_key', $_POST['heygov_widget']['features']);
 	$heygov_btn_text = sanitize_text_field($_POST['heygov_widget']['text']);
 	$heygov_btn_position = sanitize_text_field($_POST['heygov_widget']['position']);
+
+	update_option('heygov_features', implode(',', $heygov_features));
 	update_option('heygov_btn_text', $heygov_btn_text);
 	update_option('heygov_btn_position', $heygov_btn_position);
-
 	?>
 	<div class="notice notice-success"><p>HeyGov widget is updated.</p></div>
 	<?php
@@ -77,30 +72,15 @@ if (isset($_POST['heygov_banner'])) {
 				<th><label for="heygov_id">HeyGov ID</label></th>
 				<td>
 					<input type="text" name="heygov[id]" class="regular-text" id="heygov_id" value="<?php echo esc_attr($heygov_id ?: ''); ?>" />
-					<p class="description">Usually the website domain without <code>www.</code>, ex: <code>town.com</code></p>
-				</td>
-			</tr>
-			<tr>
-				<th><label for="heygov_id">Active apps</label></th>
-				<td>
-					<fieldset>
-						<legend class="screen-reader-text"><span>HeyGov apps to enable </span></legend>
-						<p>
-							<label><input name="heygov[features][]" type="checkbox" value="payments" <?php checked(in_array('payments', $heygov_features)) ?>> HeyGov QuickPay</label><br>
-							<label><input name="heygov[features][]" type="checkbox" value="forms" <?php checked(in_array('forms', $heygov_features)) ?>> HeyLicense</label><br>
-							<label><input name="heygov[features][]" type="checkbox" value="venues" <?php checked(in_array('venues', $heygov_features)) ?>> HeyReserve</label><br>
-							<label><input name="heygov[features][]" type="checkbox" value="issues" <?php checked(in_array('issues', $heygov_features)) ?>> HeyGov 311</label>
-						</p>
-						<p class="description">
-							Which HeyGov apps should be displayed in the widget?
-						</p>
-					</fieldset>
+					<p class="description">Usually the website domain without www, ex: <code>town.com</code></p>
 				</td>
 			</tr>
 			<tr>
 				<th class="heygov-py-0"></th>
 				<td class="heygov-py-0">
-					<p class="submit"><input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update HeyGov settings"></p>
+					<p class="heygov-py-0 submit">
+						<input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update HeyGov ID">
+					</p>
 				</td>
 			</tr>
 		</table>
@@ -109,14 +89,32 @@ if (isset($_POST['heygov_banner'])) {
 
 	<?php if ($heygov_id) : ?>
 		<div class="heygov-feature">
-			<h3>HeyGov widget appearance</h3>
+			<h3>HeyGov Widget</h3>
 
 			<form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post">
 
 				<table class="form-table">
 					<tbody>
 						<tr>
-							<th><label for="heygov_btn_position">Widget button position</label></th>
+							<th><label for="heygov_widget_apps">Active apps</label></th>
+							<td>
+								<fieldset>
+									<legend class="screen-reader-text"><span>HeyGov apps to enable </span></legend>
+									<p>
+										<label><input name="heygov_widget[features][]" type="checkbox" value="payments" <?php checked(in_array('payments', $heygov_features)) ?>> HeyGov QuickPay</label><br>
+										<label><input name="heygov_widget[features][]" type="checkbox" value="forms" <?php checked(in_array('forms', $heygov_features)) ?>> HeyLicense</label><br>
+										<label><input name="heygov_widget[features][]" type="checkbox" value="venues" <?php checked(in_array('venues', $heygov_features)) ?>> HeyReserve</label><br>
+										<label><input name="heygov_widget[features][]" type="checkbox" value="issues" <?php checked(in_array('issues', $heygov_features)) ?>> HeyGov 311</label>
+									</p>
+									<p class="description">
+										Which HeyGov apps should be displayed in the widget?
+									</p>
+								</fieldset>
+							</td>
+						</tr>
+
+						<tr>
+							<th><label for="heygov_btn_position">Button position</label></th>
 							<td>
 								<select class="regular-text" name="heygov_widget[position]" id="heygov_btn_position">
 									<option value="none" <?php selected($heygov_btn_position, 'none'); ?>>None</option>
@@ -129,7 +127,7 @@ if (isset($_POST['heygov_banner'])) {
 						</tr>
 
 						<tr>
-							<th><label for="heygov_btn_text">Widget button text</label></th>
+							<th><label for="heygov_btn_text">Button text</label></th>
 							<td>
 								<input type="text" name="heygov_widget[text]" class="regular-text" id="heygov_btn_text" value="<?php echo esc_attr($heygov_btn_text); ?>" />
 								<p class="description">Example: `Report a City Issue` or `Report a Town Issue`</p>
@@ -137,17 +135,9 @@ if (isset($_POST['heygov_banner'])) {
 						</tr>
 
 						<tr>
-							<th scope="row"><label for="heygov_widget_shortcode">Widget Shortcode</label></th>
-							<td>
-								<input type="text" class="regular-text" id="heygov_widget_shortcode" value="[heygov-widget]" readonly />
-								<p class="description">Use this schortcode to include the HeyGov widget on any page</p>
-							</td>
-						</tr>
-
-						<tr>
 							<th class="heygov-py-0"></th>
 							<td class="heygov-py-0">
-								<p class="submit"><input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update widget"></p>
+								<p class="heygov-py-0 submit"><input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update widget"></p>
 							</td>
 						</tr>
 					</tbody>
@@ -201,34 +191,46 @@ if (isset($_POST['heygov_banner'])) {
 					</div>
 				</div>
 
-				<p class="submit"><input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update banner"></p>
+				<p class="heygov-py-0 submit">
+					<input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update banner">
+				</p>
 			</form>
-
 		</div>
 
 		<!-- Adding forms from heygov to muni website --> 
 		<div class="heygov-feature">
-			<h3 class="heygov-h3">Display heygov forms on your website</h3>
-			<p>Copy shortcode from below ⬇️ & paste on to the page where you want the HeyGov forms to be displayed </p>
-			<code>[heygov-forms]</code>
+			<h3 class="heygov-h3">Embed HeyGov apps</h3>
+			<p>Use these shortcodes to embed individual apps on the pages you want.</p>
 
-			<div class="heygov-pt-3">
-				<h6 class="heygov-h6">Shortcode filter examples</h6>
-				<div>
-					<!-- Container size shortcode filter --> 
-					<p><b>Container size</b></p>
-					<code>[heygov-forms maxcolumns="4"]</code>
-					<p>Maxcolumns number is the number of forms card  that will be displayed on large screen</p>
-				</div>
-				<div>
-					<!-- Department filter --> 
-					<p><b>Department id, slug or name </b></p>
-					<p><code>[heygov-forms department="4"]</code></p>
-					<p><code>[heygov-forms department="parks-and-rec"]</code></p>
-					<p><code>[heygov-forms department="Parks and Rec"]</code></p>
-				</div>
-			</div>
-			
+			<table class="form-table">
+				<tbody>
+
+					<tr>
+						<th scope="row"><label for="heygov_widget_shortcode">Widget</label></th>
+						<td>
+							<input type="text" class="large-text" id="heygov_widget_shortcode" value="[heygov-widget]" readonly />
+							<p class="description">Embed the HeyGov widget directly on any page, ex: Contact page</p>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row"><label for="heygov_widget_forms">Permits and Licenses</label></th>
+						<td>
+							<input type="text" class="large-text" id="heygov_widget_forms" value='[heygov-forms maxcolumns="4" department="Parks and Rec"]' readonly />
+							<p class="description">Display a section with permits and licenses. Use <code>department</code> attribute to filter forms by department ID or name.</p>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row"><label for="heygov_widget_venue">Venue calendar</label></th>
+						<td>
+							<input type="text" class="large-text" id="heygov_widget_venue" value='[heygov-venue venue="venue-unique-id"]' readonly />
+							<p class="description">Display availability calendar for a specific venue. <code>venue</code> attribute is required.</p>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
 			
 		</div>
 

@@ -4,8 +4,8 @@ class HeyGovResource {
 
 	public function load_admin_includes() {
 		wp_enqueue_style('heygov-admin', HEYGOV_URL . 'assets/css/heygov-admin.css', [], '1.4');
-		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.4');
-		wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/heygov-admin.js', [], '1.4', true);		
+		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.5.0');
+		wp_enqueue_script('heygov-admin', HEYGOV_URL . 'assets/heygov-admin.js', [], '1.4', true);
 
 		wp_localize_script('heygov-admin', 'HeyGov', [
 			'apiUrl' => esc_url_raw( rest_url() ),
@@ -14,7 +14,8 @@ class HeyGovResource {
 	}
 
 	public function load_site_includes() {
-		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.4');
+		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.5.0');
+		wp_enqueue_script('heygov-venues', HEYGOV_URL . 'assets/heygov-venues.js', [], '1.5.0', true);
 	}
 
 	public function load_widget() { 
@@ -60,7 +61,7 @@ class HeyGovResource {
 		$calc_medium = $maxcolumns - 1; 
 		$department = $args['department']; 
 
-        $heygov_id = get_option('heygov_id');
+		$heygov_id = get_option('heygov_id');
 		$forceUpdate = isset($_REQUEST['heygov-refresh-forms']);
 
 		// Get any existing copy of our transient data
@@ -92,6 +93,41 @@ class HeyGovResource {
 		ob_end_clean();
 
 		return $forms;
-    }
+	}
 
+	public function heygov_venue_shortcode( $atts = array()) {
+		$args = shortcode_atts( array(
+			'venue' => false,
+		), $atts );
+
+		$heygov_id = get_option('heygov_id');
+
+		if (is_wp_error($heygov_id)) {
+			$venue = $heygov_id;
+		} else if (!$args['venue']) {
+			$venue = new WP_Error('heygov_venue_shortcode', 'No venue ID provided in shortcode');
+		} else if ( false === ( $venue = get_transient( 'venue-' . $args['venue'] ) ) ) {
+			// It wasn't there, so regenerate the data and save the transient
+			$response = wp_remote_get('https://api.heygov.com/' . $heygov_id . '/venues/' . $args['venue']);
+			$responseCode = wp_remote_retrieve_response_code($response);
+
+			if ($responseCode !== 200) {
+				$venue = is_wp_error($response) ? $response : new WP_Error('heygov_venue_shortcode', 'Error loading venue info from HeyGov API (' . $responseCode . ')');
+			} else {
+				$venue = wp_remote_retrieve_body($response);
+				$venue = json_decode($venue, true);
+				set_transient( 'venue-' . $args['venue'], $venue, HOUR_IN_SECONDS );
+			}
+		}
+
+		// generate forms HTML
+		ob_start();
+
+		require_once HEYGOV_DIR . 'includes/view/show-venue.php';
+
+		$html = ob_get_contents();
+		ob_end_clean();
+
+		return $html;
+	}
 }

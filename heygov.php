@@ -3,7 +3,7 @@
 Plugin Name: HeyGov
 Plugin URI: https://heygov.com
 Description: Manage the HeyGov widget on your municipality WordPress website
-Version: 1.4.0
+Version: 1.5.0
 Requires at least: 5.0
 Requires PHP: 7.0
 Author: HeyGov
@@ -18,7 +18,6 @@ require_once 'includes/class/heygov-resource.php';
 require_once 'includes/class/heygov-settings.php';
 
 function heygov_validate_id(string $id) {
-
 	if (empty($id)) {
 		return new \WP_Error('heygov_empty_id', 'HeyGov ID is empty');
 	}
@@ -56,8 +55,9 @@ class HeyGov {
 			add_action('wp_enqueue_scripts', array($resource, 'load_site_includes'));
 			add_action('wp_footer', array($resource, 'load_widget'));
 			add_action('wp_footer', array($resource, 'load_apps_banner'));
-			add_shortcode('heygov-forms', array($resource, 'heygov_forms_shortcode'));
 			add_shortcode('heygov-widget', array($setting, 'heygov_shortcode'));
+			add_shortcode('heygov-forms', array($resource, 'heygov_forms_shortcode'));
+			add_shortcode('heygov-venue', array($resource, 'heygov_venue_shortcode'));
 			
 		}
 
