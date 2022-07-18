@@ -87,7 +87,7 @@ class HeyGovResource {
 		// generate forms HTML
 		ob_start();
 
-		require_once HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
+		require HEYGOV_DIR . 'includes/view/show-heygov-muni-forms.php';
 
 		$forms = ob_get_contents();
 		ob_end_clean();
@@ -123,7 +123,7 @@ class HeyGovResource {
 		// generate forms HTML
 		ob_start();
 
-		require_once HEYGOV_DIR . 'includes/view/show-venue.php';
+		require HEYGOV_DIR . 'includes/view/show-venue.php';
 
 		$html = ob_get_contents();
 		ob_end_clean();
