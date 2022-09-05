@@ -8,7 +8,7 @@
                             <img src="<?php echo esc_url(HEYGOV_URL . 'assets/icon-' .$form->icon. '.svg') ?>" alt=""class="heygov-form-icon" width="160" height="128">
                     <?php endif; ?> 
                         <h6 class="heygov-h6 heygov-card-title"> <?php echo $form->name ?></h6>
-                        <h3 class="heygov-h3 heygov-form-price"><?php echo $form->price ? '$'.number_format($form->price, 2, '.', '') : '';  ?> </h3>
+                        <h3 class="heygov-h3 heygov-form-price"><?php echo $form->price ?> </h3>
                     </div>
                 </a>
             </div>
