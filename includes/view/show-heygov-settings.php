@@ -7,6 +7,7 @@ $heygov_id = get_option('heygov_id');
 $heygov_features = explode(',', get_option('heygov_features') ?: 'issues');
 $heygov_btn_text = get_option('heygov_btn_text') ?: 'Report an Issue';
 $heygov_btn_position = get_option('heygov_btn_position') ?: 'middle-right';
+$heygov_location_required = get_option('heygov_location_required') ?: 0;
 
 // apps banner info
 $heygov_banner = get_option('heygov_banner') ?: 0;
@@ -34,10 +35,12 @@ if (isset($_POST['heygov_widget'])) {
 	$heygov_features = array_map('sanitize_key', $_POST['heygov_widget']['features']);
 	$heygov_btn_text = sanitize_text_field($_POST['heygov_widget']['text']);
 	$heygov_btn_position = sanitize_text_field($_POST['heygov_widget']['position']);
+    $heygov_location_required = sanitize_text_field($_POST['heygov_widget']['location'])  === 'on' ? 1 : 0; 
 
 	update_option('heygov_features', implode(',', $heygov_features));
 	update_option('heygov_btn_text', $heygov_btn_text);
 	update_option('heygov_btn_position', $heygov_btn_position);
+    update_option('heygov_location_required', $heygov_location_required); 
 	?>
 	<div class="notice notice-success"><p>HeyGov widget is updated.</p></div>
 	<?php
@@ -131,6 +134,13 @@ if (isset($_POST['heygov_banner'])) {
 							<td>
 								<input type="text" name="heygov_widget[text]" class="regular-text" id="heygov_btn_text" value="<?php echo esc_attr($heygov_btn_text); ?>" />
 								<p class="description">Example: `Report a City Issue` or `Report a Town Issue`</p>
+							</td>
+						</tr>
+
+						<tr>
+							<th><label for="heygov_location_required">HeyGov 311 Location</label></th>
+							<td>
+							<p><label><input type="checkbox" name="heygov_widget[location]" id="heygov_location_required" <?php checked($heygov_location_required) ?> /> Set HeyGov 311 reported thread location to be required </label></p>
 							</td>
 						</tr>
 
