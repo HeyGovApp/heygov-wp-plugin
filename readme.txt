@@ -36,6 +36,9 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 
 == Changelog ==
 
+= 1.6.0 = 
+* Added - HeyGov 311 location required option
+
 = 1.5.1 = 
 * Fixed - Display shortcode twice on same page 
 
