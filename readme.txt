@@ -4,7 +4,7 @@ Tags: heygov, issue reporting, reporting, forms, permits
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 1.5.1
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,7 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 
 = 1.6.0 = 
 * Added - HeyGov 311 location required option
+* Fixed - Price format for forms
 
 = 1.5.1 = 
 * Fixed - Display shortcode twice on same page 
