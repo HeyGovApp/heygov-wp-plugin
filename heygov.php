@@ -94,6 +94,7 @@ class HeyGov {
 
 		add_filter('plugin_action_links_heygov/heygov.php', [$this, 'actionLinks']);
 		add_action('init', 'heygov_load_module');
+		add_action('rest_api_init', array($resource, 'register_api'));
 	}
 
 	public function actionLinks(array $links) {

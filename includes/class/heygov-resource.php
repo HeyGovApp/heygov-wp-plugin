@@ -131,4 +131,39 @@ class HeyGovResource {
 
 		return $html;
 	}
+
+	public function register_api() {
+
+		//endpoint to display enabled HeyGov features
+		register_rest_route('heygov/v1', '/info', array(
+			'methods'   =>  'GET',
+			'callback'  =>  function ($request) {
+				$heygov_id = get_option('heygov_id');
+				$features = [];
+				$endpoints = [];
+
+				if ($heygov_id) {
+					$features = explode(',', get_option('heygov_features') ?: 'issues');
+
+					foreach ($features as $feature) {
+						if ($feature === 'issues') {
+							$endpoints['issues'] = 'https://api.heygov.com/' . $heygov_id . '/threads';
+						} else if ($feature === 'forms') {
+							$endpoints['forms'] = 'https://api.heygov.com/' . $heygov_id . '/forms';
+						} else if ($feature === 'venues') {
+							$endpoints['venues'] = 'https://api.heygov.com/' . $heygov_id . '/venues';
+						}
+					}
+				}
+
+				return array(
+					'heygov_id'	=>	$heygov_id,
+					'features'	=>	$features,
+					'endpoints'	=>	$endpoints,
+				);
+			}
+		));
+
+	}
+
 }

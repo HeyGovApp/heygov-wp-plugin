@@ -37,6 +37,7 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 == Changelog ==
 
 = 1.7.0 = 
+* Added - HeyGov features in WP Api
 * Added - Tribe Events integration: link events to HeyGov Venues
 
 = 1.6.0 = 
