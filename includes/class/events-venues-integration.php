@@ -90,10 +90,21 @@ class HeyGovVenuesIntegration {
 
 		if (isset($_POST['heygov_venues'])) {
 			$value = is_array($_POST['heygov_venues']) ? implode(',', $_POST['heygov_venues']) : $_POST['heygov_venues'];
+			$value = sanitize_text_field($value);
 
-			update_post_meta($post->ID, 'heygov_venues', sanitize_text_field($value));
+			update_post_meta($post->ID, 'heygov_venues', $value);
 
-			//todo update `heygov_venues` for future reccurent events
+			if (tribe_is_recurring_event($postId)) {
+				$children = get_children([
+					'posts_per_page' => -1,
+					'post_parent'    => $postId,
+					'post_type'      => 'tribe_events',
+				]);
+
+				foreach ($children as $child) {
+					update_post_meta($child->ID, 'heygov_venues', $value);
+				}
+			}
 
 		} else {
 			delete_post_meta($post->ID, 'heygov_venues');
