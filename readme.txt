@@ -4,7 +4,7 @@ Tags: heygov, issue reporting, reporting, forms, permits
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,11 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 2. Customisable settings for HeyGov widget
 
 == Changelog ==
+
+= 1.7.0 = 
+* Added - HeyGov features in WP Api
+* Added - Tribe Events integration: link events to HeyGov Venues
+* Updated - HeyGov widget button moves up on sites with "Back to top" button
 
 = 1.6.0 = 
 * Added - HeyGov 311 location required option

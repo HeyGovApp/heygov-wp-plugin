@@ -3,7 +3,7 @@
 Plugin Name: HeyGov
 Plugin URI: https://heygov.com
 Description: Manage the HeyGov widget on your municipality WordPress website
-Version: 1.6.0
+Version: 1.7.0
 Requires at least: 5.0
 Requires PHP: 7.0
 Author: HeyGov
@@ -16,6 +16,37 @@ define('HEYGOV_DIR', plugin_dir_path( __FILE__ ));
 
 require_once 'includes/class/heygov-resource.php';
 require_once 'includes/class/heygov-settings.php';
+require_once 'includes/class/events-venues-integration.php';
+
+function heyGovID() {
+	return get_option('heygov_id');
+}
+
+function heyGovVenues($forceUpdate = false) {
+	$venues = [];
+
+	// If no HeyGovID, return empty array
+	if (!heyGovID()) {
+		return $venues;
+	}
+
+	$forceUpdate = isset($_REQUEST['heygov-refresh-venues']) || $forceUpdate;
+
+	if ( false === ( $venues = get_transient( 'heygov-venues' ) ) || $forceUpdate ) {
+		// It wasn't there, so regenerate the data and save the transient
+		$venues = wp_remote_get('https://api.heygov.com/' . heyGovID() . '/venues?orderBy=name&order=asc');
+
+		if (is_wp_error($venues)) {
+			$venues = [];
+		} else {
+			$venues = wp_remote_retrieve_body($venues);
+			$venues = json_decode($venues);
+			set_transient( 'heygov-venues', $venues, 12 * HOUR_IN_SECONDS );
+		}
+	}
+
+	return $venues;
+}
 
 function heygov_validate_id(string $id) {
 	if (empty($id)) {
@@ -41,12 +72,12 @@ function heygov_validate_id(string $id) {
 }
 
 
-
 class HeyGov {
 
 	public function __construct() {
 		$setting = new HeyGovSettings();
 		$resource = new HeyGovResource();
+		new HeyGovVenuesIntegration();
 
 		if (is_admin()) {
 			add_action('admin_menu', array($setting, 'add_admin_menu'));
@@ -63,6 +94,7 @@ class HeyGov {
 
 		add_filter('plugin_action_links_heygov/heygov.php', [$this, 'actionLinks']);
 		add_action('init', 'heygov_load_module');
+		add_action('rest_api_init', array($resource, 'register_api'));
 	}
 
 	public function actionLinks(array $links) {
