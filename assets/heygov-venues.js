@@ -1,4 +1,8 @@
 
+if (document.getElementById("back-to-top")) {
+	document.body.classList.add("has-back-to-top")
+}
+
 document.querySelectorAll(".heygov-venue-availability").forEach(venue => {
 	console.log(`HeyGov render venue`, venue.id)
 

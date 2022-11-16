@@ -14,8 +14,8 @@ class HeyGovResource {
 	}
 
 	public function load_site_includes() {
-		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.5.0');
-		wp_enqueue_script('heygov-venues', HEYGOV_URL . 'assets/heygov-venues.js', [], '1.5.0', true);
+		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.7.0');
+		wp_enqueue_script('heygov-venues', HEYGOV_URL . 'assets/heygov-venues.js', [], '1.7.0', true);
 	}
 
 	public function load_widget() { 
