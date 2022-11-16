@@ -92,6 +92,9 @@ class HeyGovVenuesIntegration {
 			$value = is_array($_POST['heygov_venues']) ? implode(',', $_POST['heygov_venues']) : $_POST['heygov_venues'];
 
 			update_post_meta($post->ID, 'heygov_venues', sanitize_text_field($value));
+
+			//todo update `heygov_venues` for future reccurent events
+
 		} else {
 			delete_post_meta($post->ID, 'heygov_venues');
 		}
