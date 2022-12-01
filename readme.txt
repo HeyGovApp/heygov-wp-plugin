@@ -36,6 +36,9 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 
 == Changelog ==
 
+= 1.7.1 = 
+* Fixed -  HeyGov widget button moves up on sites with "Back to top" button select class or id 
+
 = 1.7.0 = 
 * Added - HeyGov features in WP Api
 * Added - Tribe Events integration: link events to HeyGov Venues
