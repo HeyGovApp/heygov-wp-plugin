@@ -8,9 +8,14 @@ Contents:
 4. Venue availability
 */
 
-.has-back-to-top .heygov-widget-button.bottom-right {
+.has-back-to-top-id .heygov-widget-button.bottom-right {
 	bottom: 80px !important;
 }
+.has-back-to-top-class .heygov-widget-button.bottom-right {
+	bottom: 80px; 
+	right: 15px;
+}
+
 
 /* 1. HeyGov global styles*/
 

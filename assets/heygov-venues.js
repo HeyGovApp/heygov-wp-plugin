@@ -1,6 +1,10 @@
 
 if (document.getElementById("back-to-top")) {
-	document.body.classList.add("has-back-to-top")
+	document.body.classList.add("has-back-to-top-id")
+}
+
+if (document.getElementsByClassName("back-to-top")) {
+	document.body.classList.add("has-back-to-top-class")
 }
 
 document.querySelectorAll(".heygov-venue-availability").forEach(venue => {
