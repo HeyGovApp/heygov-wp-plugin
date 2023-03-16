@@ -5,8 +5,8 @@ $heygov_id = get_option('heygov_id');
 
 // widget info
 $heygov_features = explode(',', get_option('heygov_features') ?: 'issues');
-$heygov_btn_text = get_option('heygov_btn_text') ?: 'Report an Issue';
-$heygov_btn_position = get_option('heygov_btn_position') ?: 'middle-right';
+$heygov_btn_text = get_option('heygov_btn_text') ?: 'Submit a request';
+$heygov_btn_position = get_option('heygov_btn_position') ?: 'bottom-right';
 $heygov_location_required = get_option('heygov_location_required') ?: 0;
 
 // apps banner info

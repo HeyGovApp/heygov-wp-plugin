@@ -23,8 +23,8 @@ class HeyGovResource {
 
 		if ($heygov_id) :
 			$heygov_features = get_option('heygov_features') ?: 'issues';
-			$heygov_btn_text = get_option('heygov_btn_text') ?: 'Report an Issue';
-			$heygov_btn_position = get_option('heygov_btn_position') ?: 'middle-right';
+			$heygov_btn_text = get_option('heygov_btn_text') ?: 'Submit a request';
+			$heygov_btn_position = get_option('heygov_btn_position') ?: 'bottom-right';
 			$heygov_location_required = get_option('heygov_location_required') ?: 0; 
 			$buttonStyle = $heygov_btn_position === 'none' ? '' : 'data-heygov-button-style="' . esc_attr($heygov_btn_position) . '"';
 			?>
