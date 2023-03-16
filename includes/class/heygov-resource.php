@@ -14,8 +14,10 @@ class HeyGovResource {
 	}
 
 	public function load_site_includes() {
-		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.7.0');
-		wp_enqueue_script('heygov-venues', HEYGOV_URL . 'assets/heygov-venues.js', [], '1.7.0', true);
+		wp_register_script('vuejs', 'https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.min.js', [], '2.5.22');
+
+		wp_enqueue_style('heygov-site', HEYGOV_URL . 'assets/css/heygov-site.css', [], '1.7.1');
+		wp_enqueue_script('heygov-venues', HEYGOV_URL . 'assets/heygov-venues.js', ['vuejs'], '1.7.2', true);
 	}
 
 	public function load_widget() { 
