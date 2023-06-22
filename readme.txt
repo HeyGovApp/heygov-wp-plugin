@@ -36,6 +36,9 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 
 == Changelog ==
 
+= 1.8.0 = 
+* Added - Set HeyGov api key option
+
 = 1.7.2 = 
 * Fixed - Include VueJS for Venue embed, if not already included by another plugin
 
