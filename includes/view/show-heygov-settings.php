@@ -3,6 +3,9 @@
 // HeyGov ID
 $heygov_id = get_option('heygov_id');
 
+// HeyGov api key 
+$heygov_api_key = get_option('heygov_api_key');
+
 // widget info
 $heygov_features = explode(',', get_option('heygov_features') ?: 'issues');
 $heygov_btn_text = get_option('heygov_btn_text') ?: 'Submit a request';
@@ -24,9 +27,26 @@ if (isset($_POST['heygov'])) {
 	} else {
 		$heygov_id = $id;
 		update_option('heygov_id', $id);
-		?>
-		<div class="notice notice-success"><p>HeyGov ID is updated.</p></div>
-		<?php
+?>
+		<div class="notice notice-success">
+			<p>HeyGov ID is updated.</p>
+		</div>
+	<?php
+	}
+}
+//  save HeyGov api key 
+if (isset($_POST['heygov_api_key'])) {
+	$key = sanitize_title($_POST['heygov_api_key']);
+	if (is_wp_error($key)) {
+		echo wp_kses('<div class="notice notice-error"><p>' . $key . '</p></div>', 'post');
+	} else {
+		$heygov_api_key = $key;
+		update_option('heygov_api_key', $key);
+	?>
+		<div class="notice notice-success">
+			<p>HeyGov api key updated</p>
+		</div>
+	<?php
 	}
 }
 
@@ -35,15 +55,17 @@ if (isset($_POST['heygov_widget'])) {
 	$heygov_features = array_map('sanitize_key', $_POST['heygov_widget']['features']);
 	$heygov_btn_text = sanitize_text_field($_POST['heygov_widget']['text']);
 	$heygov_btn_position = sanitize_text_field($_POST['heygov_widget']['position']);
-    $heygov_location_required = sanitize_text_field($_POST['heygov_widget']['location'])  === 'on' ? 1 : 0; 
+	$heygov_location_required = sanitize_text_field($_POST['heygov_widget']['location'])  === 'on' ? 1 : 0;
 
 	update_option('heygov_features', implode(',', $heygov_features));
 	update_option('heygov_btn_text', $heygov_btn_text);
 	update_option('heygov_btn_position', $heygov_btn_position);
-    update_option('heygov_location_required', $heygov_location_required); 
+	update_option('heygov_location_required', $heygov_location_required);
 	?>
-	<div class="notice notice-success"><p>HeyGov widget is updated.</p></div>
-	<?php
+	<div class="notice notice-success">
+		<p>HeyGov widget is updated.</p>
+	</div>
+<?php
 }
 
 // save banner settings
@@ -58,9 +80,11 @@ if (isset($_POST['heygov_banner'])) {
 	update_option('heygov_banner_img_big', $heygov_banner_img_big);
 	update_option('heygov_banner_img_small', $heygov_banner_img_small);
 
-	?>
-	<div class="notice notice-success"><p>HeyGov apps banner is updated.</p></div>
-	<?php
+?>
+	<div class="notice notice-success">
+		<p>HeyGov apps banner is updated.</p>
+	</div>
+<?php
 }
 ?>
 
@@ -91,6 +115,29 @@ if (isset($_POST['heygov_banner'])) {
 	</form>
 
 	<?php if ($heygov_id) : ?>
+		<div class="heygov-api-key">
+			<form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post">
+
+				<table class="form-table">
+					<tr>
+						<th><label for="heygov_api_key">HeyGov API Key</label></th>
+						<td>
+							<input type="text" name="heygov_api_key" class="regular-text" id="heygov_api_key" value="<?php echo esc_attr($heygov_api_key ?: ''); ?>" />
+							<p class="description">Ask HeyGov support to provide you HeyGov api key</p>
+						</td>
+					</tr>
+					<tr>
+						<th class="heygov-py-0"></th>
+						<td class="heygov-py-0">
+							<p class="heygov-py-0 submit">
+								<input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update HeyGov Api Key">
+							</p>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+		</div>
 		<div class="heygov-feature">
 			<h3>HeyGov Widget</h3>
 
@@ -140,7 +187,7 @@ if (isset($_POST['heygov_banner'])) {
 						<tr>
 							<th><label for="heygov_location_required">HeyGov 311 Location</label></th>
 							<td>
-							<p><label><input type="checkbox" name="heygov_widget[location]" id="heygov_location_required" <?php checked($heygov_location_required) ?> /> Set HeyGov 311 reported thread location to be required </label></p>
+								<p><label><input type="checkbox" name="heygov_widget[location]" id="heygov_location_required" <?php checked($heygov_location_required) ?> /> Set HeyGov 311 reported thread location to be required </label></p>
 							</td>
 						</tr>
 
@@ -207,7 +254,7 @@ if (isset($_POST['heygov_banner'])) {
 			</form>
 		</div>
 
-		<!-- Adding forms from heygov to muni website --> 
+		<!-- Adding forms from heygov to muni website -->
 		<div class="heygov-feature">
 			<h3 class="heygov-h3">Embed HeyGov apps</h3>
 			<p>Use these shortcodes to embed individual apps on the pages you want.</p>
@@ -241,34 +288,34 @@ if (isset($_POST['heygov_banner'])) {
 
 				</tbody>
 			</table>
-			
+
 		</div>
 
 		<script type="text/javascript">
-		const $banners = document.querySelectorAll('.heygov-apps-banner')
+			const $banners = document.querySelectorAll('.heygov-apps-banner')
 
-		jQuery('#heygov_banner_toggle').change(() => {
-			jQuery('.heygov-apps-banner-options').toggleClass('hidden')
-		})
-
-		// change banner bg color
-		const $bannerBgColor = document.getElementById('heygov_banner_bg')
-		$bannerBgColor.addEventListener('change', event => {
-			[ ...$banners ].forEach(banner => {
-				banner.style.backgroundColor = $bannerBgColor.value
+			jQuery('#heygov_banner_toggle').change(() => {
+				jQuery('.heygov-apps-banner-options').toggleClass('hidden')
 			})
-		})
 
-		jQuery('#heygov_banner_image_small, #heygov_banner_image_big').change(event => {
-			const lastImage = event.target.id.split('_').pop()
-
-			heyGovUploadFile(event.target.files[0]).then(re => {
-				jQuery(`#${event.target.id}_inp`).val(re.source_url)
-				jQuery(`.heygov-apps-banner-image-${lastImage}`).attr('src', re.source_url)
-			}, error => {
-				alert(`Error uploading file ~ ${error}`)
+			// change banner bg color
+			const $bannerBgColor = document.getElementById('heygov_banner_bg')
+			$bannerBgColor.addEventListener('change', event => {
+				[...$banners].forEach(banner => {
+					banner.style.backgroundColor = $bannerBgColor.value
+				})
 			})
-		})
+
+			jQuery('#heygov_banner_image_small, #heygov_banner_image_big').change(event => {
+				const lastImage = event.target.id.split('_').pop()
+
+				heyGovUploadFile(event.target.files[0]).then(re => {
+					jQuery(`#${event.target.id}_inp`).val(re.source_url)
+					jQuery(`.heygov-apps-banner-image-${lastImage}`).attr('src', re.source_url)
+				}, error => {
+					alert(`Error uploading file ~ ${error}`)
+				})
+			})
 		</script>
 	<?php endif ?>
 
