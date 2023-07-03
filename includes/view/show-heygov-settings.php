@@ -122,7 +122,7 @@ if (isset($_POST['heygov_banner'])) {
 					<tr>
 						<th><label for="heygov_api_key">HeyGov API Key</label></th>
 						<td>
-							<input type="text" name="heygov_api_key" class="regular-text" id="heygov_api_key" value="<?php echo esc_attr($heygov_api_key ?: ''); ?>" />
+							<input type="text" name="heygov_api_key" pattern="sk_[a-zA-Z0-9]{20,29}" class="regular-text" id="heygov_api_key" value="<?php echo esc_attr($heygov_api_key ?: ''); ?>" />
 							<p class="description">Ask HeyGov support to provide you HeyGov api key</p>
 						</td>
 					</tr>
