@@ -33,9 +33,7 @@ if (isset($_POST['heygov'])) {
 		</div>
 	<?php
 	}
-}
-//  save HeyGov api key 
-if (isset($_POST['heygov_api_key'])) {
+
 	$key = sanitize_title($_POST['heygov_api_key']);
 	if (is_wp_error($key)) {
 		echo wp_kses('<div class="notice notice-error"><p>' . $key . '</p></div>', 'post');
@@ -49,6 +47,7 @@ if (isset($_POST['heygov_api_key'])) {
 	<?php
 	}
 }
+
 
 // save widget settings
 if (isset($_POST['heygov_widget'])) {
@@ -103,10 +102,17 @@ if (isset($_POST['heygov_banner'])) {
 				</td>
 			</tr>
 			<tr>
+				<th><label for="heygov_api_key">HeyGov API Key</label></th>
+				<td>
+					<input type="text" name="heygov_api_key" pattern="sk_[A-Za-z0-9_]{29}" class="regular-text" id="heygov_api_key" value="<?php echo esc_attr($heygov_api_key ?: ''); ?>" />
+					<p class="description">Ask HeyGov support to provide you HeyGov api key</p>
+				</td>
+			</tr>
+			<tr>
 				<th class="heygov-py-0"></th>
 				<td class="heygov-py-0">
 					<p class="heygov-py-0 submit">
-						<input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update HeyGov ID">
+						<input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Save HeyGov settings">
 					</p>
 				</td>
 			</tr>
@@ -115,29 +121,6 @@ if (isset($_POST['heygov_banner'])) {
 	</form>
 
 	<?php if ($heygov_id) : ?>
-		<div class="heygov-api-key">
-			<form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post">
-
-				<table class="form-table">
-					<tr>
-						<th><label for="heygov_api_key">HeyGov API Key</label></th>
-						<td>
-							<input type="text" name="heygov_api_key" pattern="[A-Za-z0-9_]{32}" class="regular-text" id="heygov_api_key" value="<?php echo esc_attr($heygov_api_key ?: ''); ?>" />
-							<p class="description">Ask HeyGov support to provide you HeyGov api key</p>
-						</td>
-					</tr>
-					<tr>
-						<th class="heygov-py-0"></th>
-						<td class="heygov-py-0">
-							<p class="heygov-py-0 submit">
-								<input type="submit" name="heygov_submit" id="heygov_submit" class="button button-primary" value="Update HeyGov Api Key">
-							</p>
-						</td>
-					</tr>
-				</table>
-
-			</form>
-		</div>
 		<div class="heygov-feature">
 			<h3>HeyGov Widget</h3>
 
