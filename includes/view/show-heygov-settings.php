@@ -21,33 +21,22 @@ $heygov_banner_img_small = get_option('heygov_banner_img_small') ?: HEYGOV_URL .
 // validate & save HeyGov ID
 if (isset($_POST['heygov'])) {
 	$id = heygov_validate_id(sanitize_text_field($_POST['heygov']['id']));
+	$key = sanitize_key($_POST['heygov_api_key']);
 
 	if (is_wp_error($id)) {
 		echo wp_kses('<div class="notice notice-error"><p>' . $id->get_error_message() . '</p></div>', 'post');
 	} else {
 		$heygov_id = $id;
+		$heygov_api_key = $key;
 		update_option('heygov_id', $id);
+		update_option('heygov_api_key', $key);
 ?>
 		<div class="notice notice-success">
-			<p>HeyGov ID is updated.</p>
-		</div>
-	<?php
-	}
-
-	$key = sanitize_title($_POST['heygov_api_key']);
-	if (is_wp_error($key)) {
-		echo wp_kses('<div class="notice notice-error"><p>' . $key . '</p></div>', 'post');
-	} else {
-		$heygov_api_key = $key;
-		update_option('heygov_api_key', $key);
-	?>
-		<div class="notice notice-success">
-			<p>HeyGov api key updated</p>
+			<p>HeyGov settings are updated.</p>
 		</div>
 	<?php
 	}
 }
-
 
 // save widget settings
 if (isset($_POST['heygov_widget'])) {
