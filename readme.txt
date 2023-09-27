@@ -2,7 +2,7 @@
 Contributors: heygov, andreiigna
 Tags: heygov, issue reporting, reporting, forms, permits
 Requires at least: 5.0
-Tested up to: 6.1
+Tested up to: 6.3
 Requires PHP: 7.0
 Stable tag: 1.8.1
 License: GPLv2 or later
