@@ -4,7 +4,7 @@ Tags: heygov, issue reporting, reporting, forms, permits
 Requires at least: 5.0
 Tested up to: 6.3
 Requires PHP: 7.0
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,9 @@ This plugin streamlines the installation for the HeyGov widget on your WordPress
 2. Customisable settings for HeyGov widget
 
 == Changelog ==
+
+= 1.8.2 = 
+* Updated - Endpoint to validate HeyGov ID
 
 = 1.8.1 = 
 * Fixed - Validate HeyGov ID format
